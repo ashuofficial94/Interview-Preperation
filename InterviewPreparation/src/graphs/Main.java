@@ -24,6 +24,16 @@ public class Main {
 		for(Node node: bfs_traversal) {
 			System.out.print(node.getValue() + " ");
 		}
+		
+		System.out.print("\n\nEnter the source for DFS : ");
+		source = Integer.parseInt(br.readLine());
+		
+		List<Node> dfs_traversal = opr.depthFirst(graph, source);
+		System.out.print("\nDepth First Traversal - ");
+		
+		for(Node node: dfs_traversal) {
+			System.out.print(node.getValue() + " ");
+		}
 	}
 	
 	

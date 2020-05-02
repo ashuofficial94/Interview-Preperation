@@ -29,7 +29,6 @@ public class Queue {
 		if(queue.size() > 0)
 			return queue.remove(0);
 		
-		else
-			return null;
+		return null;
 	}
 }

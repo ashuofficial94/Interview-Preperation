@@ -37,14 +37,10 @@ public class GraphOperations {
 				System.out.println(x_node.getValue() + " is added as a vertex");
 			}
 			
-			else {
-				
-				if(input.length == 1) {
-					System.out.println(x_node.getValue() + " is already a vertex.\n");
-					continue;
-				}
+			if(input.length == 1) {
+				System.out.println(x_node.getValue() + " is already a vertex\n");
+				continue;
 			}
-			
 			
 			int y = Integer.parseInt(input[1]);
 			
@@ -91,7 +87,7 @@ public class GraphOperations {
 			
 		List<Node> bfs = new ArrayList<Node>();
 		Map<Node, Boolean> visited = new HashMap<Node, Boolean>();
-		Queue q_obj = new Queue(s_node);
+		Queue queue = new Queue(s_node);
 		
 		for(Node vertex: graph.getVertices()) {
 			visited.put(vertex, false);
@@ -99,15 +95,15 @@ public class GraphOperations {
 		
 		visited.replace(s_node, true);
 		
-		while(q_obj.getQueue().size() != 0) {
+		while(queue.getQueue().size() != 0) {
 			
-			Node node = q_obj.dequeue();
+			Node node = queue.dequeue();
 			bfs.add(node);
 			
 			for(Node adj: node.getAdjacents()) {
 				
 				if(!visited.get(adj)) {
-					q_obj.enqueue(adj);
+					queue.enqueue(adj);
 					visited.replace(adj, true);
 				}
 			}
@@ -116,5 +112,38 @@ public class GraphOperations {
 		return bfs;
 	}
 	
-	
+	public List<Node> depthFirst(Graph graph, int source) {
+		
+		Node s_node = graph.getNode(source);
+		
+		if(s_node == null) {
+			System.out.println("No such vertex exists");
+			return null;
+		}
+			
+		List<Node> dfs = new ArrayList<Node>();
+		Map<Node, Boolean> visited = new HashMap<Node, Boolean>();
+		Stack stack = new Stack(s_node);
+		
+		for(Node vertex: graph.getVertices()) {
+			visited.put(vertex, false);
+		}
+		
+		visited.replace(s_node, true);
+		
+		while(stack.getStack().size() != 0) {
+			
+			Node node = stack.pop();
+			dfs.add(node);
+			
+			for(Node adj: node.getAdjacents()) {
+				if(!visited.get(adj)) {
+					stack.push(adj);
+					visited.replace(adj, true);
+				}
+			}
+		}
+		
+		return dfs;
+	}
 }
