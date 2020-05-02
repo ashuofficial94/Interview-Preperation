@@ -3,7 +3,9 @@ package graphs;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class GraphOperations {
@@ -22,7 +24,7 @@ public class GraphOperations {
 			int x = Integer.parseInt(input[0]);
 			
 			if(x == -1) {
-				System.out.println("Graph Initialized.");
+				System.out.println("Graph Initialized.\n");
 				break;
 			}
 			
@@ -63,11 +65,55 @@ public class GraphOperations {
 		return graph;
 	}
 
-	public void breadthFirst(Graph graph) {
+	public void printGraph(Graph graph) {
 		
-		Map<Node, Boolean> visited = new HashMap<Node, Boolean>();
-		for(Node node: graph.getVertices()) {
+		System.out.println("Graph - [Vertex : Adjacents]");
+		for(Node vertex : graph.getVertices()) {
 			
+			System.out.print(vertex.getValue() + " : ");
+			for(Node adjacents: vertex.getAdjacents()) {
+				System.out.print(adjacents.getValue() + " ");
+			}
+			System.out.println();
 		}
+		System.out.println();
+		return;
 	}
+	
+	public List<Node> breadthFirst(Graph graph, int source) {
+		
+		Node s_node = graph.getNode(source);
+		
+		if(s_node == null) {
+			System.out.println("No such vertex exists");
+			return null;
+		}
+			
+		List<Node> bfs = new ArrayList<Node>();
+		Map<Node, Boolean> visited = new HashMap<Node, Boolean>();
+		Queue q_obj = new Queue(s_node);
+		
+		for(Node vertex: graph.getVertices()) {
+			visited.put(vertex, false);
+		}
+		
+		visited.replace(s_node, true);
+		
+		while(q_obj.getQueue().size() != 0) {
+			
+			Node node = q_obj.dequeue();
+			bfs.add(node);
+			
+			for(Node adj: node.getAdjacents()) {
+				
+				if(!visited.get(adj)) {
+					q_obj.enqueue(adj);
+					visited.replace(adj, true);
+				}
+			}
+		}
+		
+		return bfs;
+	}
+	
 }
