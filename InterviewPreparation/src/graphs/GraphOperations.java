@@ -144,7 +144,9 @@ public class GraphOperations {
 			dfs.add(node);
 			
 			for(Node adj: node.getAdjacents()) {
+				
 				if(!visited.get(adj)) {
+					
 					visited.replace(adj, true);
 					stack.push(adj);
 					remaining = true;

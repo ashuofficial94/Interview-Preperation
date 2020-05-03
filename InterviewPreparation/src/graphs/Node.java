@@ -22,6 +22,11 @@ public class Node {
 	}
 	
 	public boolean addAdjacent(Node node) {
+		
+		if(adjacents.contains(node)) {
+			return true;
+		}
+		
 		return adjacents.add(node);
 	}
 	
