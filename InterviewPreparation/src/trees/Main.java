@@ -11,38 +11,9 @@ public class Main {
 	public static void main(String arge[]) throws IOException{
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		int parent=0;
-		List<Integer> children;
 		
-		System.out.println("Enter -1 as parent or child to exit");
+		System.out.println("Enter -1 as a Parent to exit.");
+		System.out.println("Enter n as a null child.");
 		
-		while(true) {
-			
-			boolean end = false;
-			System.out.println("Parent : ");
-			parent = Integer.parseInt(br.readLine().trim());
-			
-			if(parent == -1)
-				end = true;
-			
-			System.out.println("Children : ");
-			String[] nodes = br.readLine().trim().split(" ");
-			children = new ArrayList<Integer>();
-			
-			for(String child: nodes) {
-				
-				children.add(Integer.parseInt(child));
-				
-				if(children.get(children.size()-1) == -1) {
-					end = true;
-					break;
-				}
-			}
-			
-			if(end)
-				break;
-			
-			
-		}
 	}
 }
