@@ -1,11 +1,11 @@
 package trees;
 
-public class BNode {
+public class BinaryNode {
 	private int value;
-	private BNode left;
-	private BNode right;
+	private BinaryNode left;
+	private BinaryNode right;
 
-	BNode(int value) {
+	BinaryNode(int value) {
 		this.value = value;
 		left = null;
 		right = null;
@@ -16,20 +16,20 @@ public class BNode {
 	}
 
 	public boolean setLeft(int l_val) {
-		left = new BNode(l_val);
+		left = new BinaryNode(l_val);
 		return true;
 	}
 
-	public BNode getLeft() {
+	public BinaryNode getLeft() {
 		return left;
 	}
 
 	public boolean setRight(int r_val) {
-		right = new BNode(r_val);
+		right = new BinaryNode(r_val);
 		return true;
 	}
 
-	public BNode getRight() {
+	public BinaryNode getRight() {
 		return right;
 	}
 }

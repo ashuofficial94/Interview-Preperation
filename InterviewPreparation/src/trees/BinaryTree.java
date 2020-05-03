@@ -2,29 +2,29 @@ package trees;
 
 import java.util.List;
 
-public class BTree {
+public class BinaryTree {
 
-	private BNode root;
-	private List<BNode> nodes;
+	private BinaryNode root;
+	private List<BinaryNode> nodes;
 	
-	BTree(BNode root) {
+	BinaryTree(BinaryNode root) {
 		this.root = root;
 	}
 	
-	public BNode getRoot() {
+	public BinaryNode getRoot() {
 		return root;
 	}
 	
-	public boolean addNode(BNode node) {
+	public boolean addNode(BinaryNode node) {
 		if(nodes.contains(node))
 			return true;
 		
 		return nodes.add(node);
 	}
 	
-	public BNode getNode(int val) {
+	public BinaryNode getNode(int val) {
 		
-		for(BNode node: nodes) {
+		for(BinaryNode node: nodes) {
 			if(node.getValue() == val)
 				return node;
 		}
