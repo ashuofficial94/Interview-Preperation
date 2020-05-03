@@ -39,7 +39,7 @@ public class Main {
 				
 			case 3:
 				
-				System.out.print("Enter the source for BFS : ");
+				System.out.print("\nEnter the source for BFS : ");
 				int source = Integer.parseInt(br.readLine());
 				
 				List<Node> bfs_traversal = opr.breadthFirst(graph, source);
@@ -52,7 +52,7 @@ public class Main {
 				
 			case 4:
 				
-				System.out.print("\n\nEnter the source for DFS : ");
+				System.out.print("\nEnter the source for DFS : ");
 				source = Integer.parseInt(br.readLine());
 				
 				List<Node> dfs_traversal = opr.depthFirst(graph, source);
@@ -68,6 +68,8 @@ public class Main {
 				System.out.println("Thanks for using Graphs. Bye.");
 				break;
 			}
+			
+			System.out.println();
 		}
 	}
 	

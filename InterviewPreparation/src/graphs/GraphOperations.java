@@ -29,8 +29,11 @@ public class GraphOperations {
 			}
 			
 			Node x_node = graph.getNode(x);
+
+			if(x_node != null) 
+				System.out.println(x_node.getValue() + " is already a vertex");
 			
-			if(x_node == null) {
+			else {
 				
 				x_node = new Node(x);
 				graph.addVertex(x_node);
@@ -38,7 +41,7 @@ public class GraphOperations {
 			}
 			
 			if(input.length == 1) {
-				System.out.println(x_node.getValue() + " is already a vertex\n");
+				System.out.println();
 				continue;
 			}
 			
@@ -53,6 +56,9 @@ public class GraphOperations {
 				System.out.println(y_node.getValue() + " is added as a vertex");
 			}
 			
+			else
+				System.out.println(y_node.getValue() + " is already a vertex");
+			
 			if(x_node.addAdjacent(y_node) && y_node.addAdjacent(x_node))
 				System.out.println(x + " <-> " + y + " Edge Added.\n");
 			
@@ -63,16 +69,15 @@ public class GraphOperations {
 
 	public void printGraph(Graph graph) {
 		
-		System.out.println("Graph - [Vertex : Adjacents]");
+		System.out.println("\nGraph - [Vertex : Adjacents]");
+		
 		for(Node vertex : graph.getVertices()) {
-			
+			System.out.println();
 			System.out.print(vertex.getValue() + " : ");
 			for(Node adjacents: vertex.getAdjacents()) {
 				System.out.print(adjacents.getValue() + " ");
 			}
-			System.out.println();
 		}
-		System.out.println();
 		return;
 	}
 	
