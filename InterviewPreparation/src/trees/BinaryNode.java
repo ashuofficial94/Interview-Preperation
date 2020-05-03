@@ -1,6 +1,7 @@
 package trees;
 
 public class BinaryNode {
+	
 	private int value;
 	private BinaryNode left;
 	private BinaryNode right;
@@ -15,18 +16,16 @@ public class BinaryNode {
 		return value;
 	}
 
-	public boolean setLeft(int l_val) {
-		left = new BinaryNode(l_val);
-		return true;
+	public void setLeft(BinaryNode l_node) {
+		left = l_node;
 	}
 
 	public BinaryNode getLeft() {
 		return left;
 	}
 
-	public boolean setRight(int r_val) {
-		right = new BinaryNode(r_val);
-		return true;
+	public void setRight(BinaryNode r_node) {
+		right = r_node;
 	}
 
 	public BinaryNode getRight() {

@@ -22,10 +22,10 @@ public class BinaryTree {
 		return nodes.add(node);
 	}
 	
-	public BinaryNode getNode(int val) {
+	public BinaryNode getNode(BinaryNode target) {
 		
 		for(BinaryNode node: nodes) {
-			if(node.getValue() == val)
+			if(node.equals(target))
 				return node;
 		}
 		
