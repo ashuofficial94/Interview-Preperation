@@ -20,6 +20,13 @@ public class Stack {
 		return stack;
 	}
 	
+	public Node getTop() {
+		if(stack.size() > 0)
+			return stack.get(stack.size() - 1);
+		
+		return null;
+	}
+	
 	public boolean push(Node node) {
 		return stack.add(node);
 	}

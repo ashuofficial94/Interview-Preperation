@@ -25,5 +25,4 @@ public class Node {
 		return adjacents.add(node);
 	}
 	
-	
 }

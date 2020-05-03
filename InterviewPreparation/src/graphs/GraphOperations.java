@@ -133,15 +133,22 @@ public class GraphOperations {
 		
 		while(stack.getStack().size() != 0) {
 			
-			Node node = stack.pop();
+			boolean remaining = false;
+			
+			Node node = stack.getTop();
 			dfs.add(node);
 			
 			for(Node adj: node.getAdjacents()) {
 				if(!visited.get(adj)) {
-					stack.push(adj);
 					visited.replace(adj, true);
+					stack.push(adj);
+					remaining = true;
+					break;
 				}
 			}
+			
+			if(!remaining)
+				stack.pop();
 		}
 		
 		return dfs;
