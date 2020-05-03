@@ -14,13 +14,15 @@ public class Main {
 		GraphOperations opr = new GraphOperations();
 		Graph graph = opr.initializeGraph();
 
-		System.out.println("1. Initialize a Graph");
-		System.out.println("2. Print the Graph");
-		System.out.println("3. Breadth First Traversal");
-		System.out.println("4. Depth First Traversal");
 		boolean exit = false;
 		
 		while(!exit) {
+			
+			System.out.println();
+			System.out.println("1. Initialize a Graph");
+			System.out.println("2. Print the Graph");
+			System.out.println("3. Breadth First Traversal");
+			System.out.println("4. Depth First Traversal");
 			
 			System.out.print("\nEnter a choice: ");
 			int choice = Integer.parseInt(br.readLine());
@@ -65,7 +67,7 @@ public class Main {
 				
 			default:
 				exit = true;
-				System.out.println("Thanks for using Graphs. Bye.");
+				System.out.println("\nThanks for using Graphs. Bye.");
 				break;
 			}
 			

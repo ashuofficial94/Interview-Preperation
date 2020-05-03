@@ -24,7 +24,7 @@ public class GraphOperations {
 			int x = Integer.parseInt(input[0]);
 			
 			if(x == -1) {
-				System.out.println("Graph Initialized.\n");
+				System.out.println("Graph Initialized.");
 				break;
 			}
 			
