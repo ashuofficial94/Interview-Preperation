@@ -38,7 +38,7 @@ public class Main {
 				
 			case 2:
 				
-				opr.printGraph(graph);
+				opr.printGraph();
 				break;
 				
 			case 3:
@@ -46,7 +46,7 @@ public class Main {
 				System.out.print("\nEnter the source for BFS : ");
 				int source = Integer.parseInt(br.readLine());
 				
-				List<Node> bfs_traversal = opr.breadthFirst(graph, source);
+				List<Node> bfs_traversal = opr.breadthFirst(source);
 				System.out.print("\nBreadth First Traversal - ");
 				
 				for(Node node: bfs_traversal) {
@@ -59,7 +59,7 @@ public class Main {
 				System.out.print("\nEnter the source for DFS : ");
 				source = Integer.parseInt(br.readLine());
 				
-				List<Node> dfs_traversal = opr.depthFirst(graph, source);
+				List<Node> dfs_traversal = opr.depthFirst(source);
 				System.out.print("\nDepth First Traversal - ");
 				
 				for(Node node: dfs_traversal) {
@@ -69,7 +69,7 @@ public class Main {
 				
 			case 5:
 				
-				List<List<Node>> components = opr.connComponents(graph);
+				List<List<Node>> components = opr.connComponents();
 				System.out.println();
 				
 				for(List<Node> connected : components) {

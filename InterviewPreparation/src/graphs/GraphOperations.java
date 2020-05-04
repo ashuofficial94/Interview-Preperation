@@ -11,15 +11,16 @@ import java.util.Map;
 public class GraphOperations {
 	
 	private Map<Node, Boolean> visited;
+	private Graph graph;
 	
 	GraphOperations(Graph graph) {
-		visited = new HashMap<Node, Boolean>();
+		this.graph = graph;
 	}
-
+	
 	public Graph initializeGraph() throws IOException {
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		Graph graph = new Graph();
+		graph = new Graph();
 		System.out.println("\nEnter only a single value to add a vertex");
 		System.out.println("Or Pair values to add edge Or -1 to save.\n");
 
@@ -73,13 +74,15 @@ public class GraphOperations {
 		return graph;
 	}
 
-	public void printGraph(Graph graph) {
+	public void printGraph() {
 		
 		System.out.println("\nGraph - [Vertex : Adjacents]");
 		
 		for(Node vertex : graph.getVertices()) {
+			
 			System.out.println();
 			System.out.print(vertex.getValue() + " : ");
+			
 			for(Node adjacents: vertex.getAdjacents()) {
 				System.out.print(adjacents.getValue() + " ");
 			}
@@ -87,7 +90,7 @@ public class GraphOperations {
 		return;
 	}
 	
-	public List<Node> breadthFirst(Graph graph, int source) {
+	public List<Node> breadthFirst(int source) {
 		
 		Node s_node = graph.getNode(source);
 		
@@ -117,7 +120,7 @@ public class GraphOperations {
 		return bfs;
 	}
 	
-	public List<Node> depthFirst(Graph graph, int source) {
+	public List<Node> depthFirst(int source) {
 		
 		Node s_node = graph.getNode(source);
 		
@@ -129,8 +132,7 @@ public class GraphOperations {
 		List<Node> dfs = new ArrayList<Node>();
 		Stack stack = new Stack(s_node);
 		
-		initializeVisited(graph);
-		
+		initializeVisited();
 		visited.replace(s_node, true);
 		
 		while(stack.getStack().size() != 0) {
@@ -158,15 +160,15 @@ public class GraphOperations {
 		return dfs;
 	}
 
-	public List<List<Node>> connComponents(Graph graph) {
+	public List<List<Node>> connComponents() {
 		
 		List<List<Node>> components = new ArrayList<List<Node>>();
 		
-		initializeVisited(graph);
+		initializeVisited();
 		Node unvisited = notVisited();
 		
 		while(unvisited != null) {	
-			List<Node> connected = breadthFirst(graph, unvisited.getValue());
+			List<Node> connected = breadthFirst(unvisited.getValue());
 			components.add(connected);
 			unvisited = notVisited();
 		}
@@ -185,8 +187,9 @@ public class GraphOperations {
 		return null;
 	}
 	
-	private void initializeVisited(Graph graph) {
+	private void initializeVisited() {
 		
+		visited = new HashMap<Node, Boolean>();
 		for(Node node: graph.getVertices()) {
 			visited.put(node, false);
 		}

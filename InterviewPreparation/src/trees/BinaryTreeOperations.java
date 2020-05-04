@@ -10,8 +10,13 @@ public class BinaryTreeOperations {
 	private List<BinaryNode> prefix;
 	private List<BinaryNode> postfix;
 	private List<BinaryNode> infix;
+	private BinaryTree tree;
 	
-	public BinaryTree initializeTree(BinaryTree tree) throws IOException {
+	BinaryTreeOperations(BinaryTree tree) {
+		this.tree = tree;
+	}
+	
+	public BinaryTree initializeTree() throws IOException {
 
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		System.out.println("Enter -1 as a Parent to save.");
@@ -69,7 +74,7 @@ public class BinaryTreeOperations {
 		return tree;
 	}
 
-	public void printTree(BinaryTree tree) {
+	public void printTree() {
 		
 		for(BinaryNode node: tree.getNodeList()) {
 			System.out.print(node.getValue() + " : ");
@@ -92,50 +97,50 @@ public class BinaryTreeOperations {
 		return;
 	}
 
-	public List<BinaryNode> getPrefix(BinaryTree tree) {
+	public List<BinaryNode> getPrefix() {
 		
 		prefix = new ArrayList<BinaryNode>();
-		prefixTraversal(tree, tree.getRoot());
+		prefixTraversal(tree.getRoot());
 		return prefix;
 	}
 	
-	private void prefixTraversal(BinaryTree tree, BinaryNode curr) {
+	private void prefixTraversal(BinaryNode curr) {
 		
 		if(curr != null) {
 			prefix.add(curr);
-			prefixTraversal(tree, curr.getLeft());
-			prefixTraversal(tree, curr.getRight());
+			prefixTraversal(curr.getLeft());
+			prefixTraversal(curr.getRight());
 		}
 	}
 	
-	public List<BinaryNode> getInfix(BinaryTree tree) {
+	public List<BinaryNode> getInfix() {
 		
 		infix = new ArrayList<BinaryNode>();
-		infixTraversal(tree, tree.getRoot());
+		infixTraversal(tree.getRoot());
 		return infix;
 	}
 	
-	private void infixTraversal(BinaryTree tree, BinaryNode curr) {
+	private void infixTraversal(BinaryNode curr) {
 		
 		if(curr != null) {
-			infixTraversal(tree, curr.getLeft());
+			infixTraversal(curr.getLeft());
 			infix.add(curr);
-			infixTraversal(tree, curr.getRight());
+			infixTraversal(curr.getRight());
 		}
 	}
 	
-	public List<BinaryNode> getPostfix(BinaryTree tree) {
+	public List<BinaryNode> getPostfix() {
 		
 		postfix = new ArrayList<BinaryNode>();
-		postfixTraversal(tree, tree.getRoot());
+		postfixTraversal(tree.getRoot());
 		return postfix;
 	}
 	
-	private void postfixTraversal(BinaryTree tree, BinaryNode curr) {
+	private void postfixTraversal(BinaryNode curr) {
 		
 		if(curr != null) {
-			postfixTraversal(tree, curr.getLeft());
-			postfixTraversal(tree, curr.getRight());
+			postfixTraversal(curr.getLeft());
+			postfixTraversal(curr.getRight());
 			postfix.add(curr);
 		}
 	}

@@ -9,11 +9,12 @@ public class Main {
 	public static void main(String arge[]) throws IOException{
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		BinaryTreeOperations opr = new BinaryTreeOperations();
-
+		
 		System.out.print("Enter Root : ");
 		int root_val = Integer.parseInt(br.readLine());
 		BinaryTree tree = new BinaryTree(new BinaryNode(root_val));
+		BinaryTreeOperations opr = new BinaryTreeOperations(tree);
+
 		boolean exit = false;
 		
 		while(!exit) {
@@ -32,15 +33,15 @@ public class Main {
 			switch(choice) {
 			
 			case 1:
-				tree = opr.initializeTree(tree);
+				tree = opr.initializeTree();
 				break;
 				
 			case 2: 
-				opr.printTree(tree);
+				opr.printTree();
 				break;
 				
 			case 3:
-				List<BinaryNode> prefix = opr.getPrefix(tree);
+				List<BinaryNode> prefix = opr.getPrefix();
 				System.out.print("Prefix : ");
 				
 				for(BinaryNode node: prefix) 
@@ -50,7 +51,7 @@ public class Main {
 				break;
 				
 			case 4:
-				List<BinaryNode> infix = opr.getInfix(tree);
+				List<BinaryNode> infix = opr.getInfix();
 				System.out.print("Infix : ");
 				
 				for(BinaryNode node: infix) 
@@ -61,7 +62,7 @@ public class Main {
 				
 			case 5:
 
-				List<BinaryNode> postfix = opr.getPostfix(tree);
+				List<BinaryNode> postfix = opr.getPostfix();
 				System.out.print("Postfix : ");
 				
 				for(BinaryNode node: postfix) 
@@ -75,6 +76,7 @@ public class Main {
 				System.out.print("Enter Root: ");
 				root_val = Integer.parseInt(br.readLine());
 				tree = new BinaryTree(new BinaryNode(root_val));
+				opr = new BinaryTreeOperations(tree);
 				break;
 				
 			default:
