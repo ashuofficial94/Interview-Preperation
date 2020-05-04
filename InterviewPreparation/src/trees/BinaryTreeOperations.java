@@ -18,7 +18,7 @@ public class BinaryTreeOperations {
 		
 		while(true) {
 			
-			System.out.println("\nParent : ");
+			System.out.print("\nParent : ");
 			
 			try {
 				parent = Integer.parseInt(br.readLine());
@@ -30,8 +30,8 @@ public class BinaryTreeOperations {
 			}
 			
 			if(parent == -1) {
-				System.out.println("Tree Saved.\n");
-				continue;
+				System.out.println("Tree Saved.");
+				break;
 			}
 			
 			BinaryNode parent_node = new BinaryNode(parent);
@@ -48,6 +48,7 @@ public class BinaryTreeOperations {
 			if(valid.isNumber(l_child)) {
 				BinaryNode l_node = new BinaryNode(Integer.parseInt(l_child));
 				parent_node.setLeft(l_node);
+				tree.addNode(l_node);
 			}
 			
 			System.out.print("Right Child : ");
@@ -56,7 +57,33 @@ public class BinaryTreeOperations {
 			if(valid.isNumber(r_child)) {
 				BinaryNode r_node = new BinaryNode(Integer.parseInt(r_child));
 				parent_node.setRight(r_node);
+				tree.addNode(r_node);
 			}
 		}
+		
+		return tree;
+	}
+
+	public void printTree(BinaryTree tree) {
+		
+		for(BinaryNode node: tree.getNodeList()) {
+			System.out.print(node.getValue() + " : ");
+			
+			if(node.getLeft() != null) 
+				System.out.print(node.getLeft().getValue() + " ");
+			
+			else
+				System.out.print("N ");
+			
+			if(node.getRight() != null) 
+				System.out.print(node.getRight().getValue() + " ");
+			
+			else
+				System.out.print("N ");
+			
+			System.out.println();
+		}
+		
+		return;
 	}
 }

@@ -1,5 +1,6 @@
 package trees;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BinaryTree {
@@ -9,6 +10,8 @@ public class BinaryTree {
 	
 	BinaryTree(BinaryNode root) {
 		this.root = root;
+		nodes = new ArrayList<BinaryNode>();
+		nodes.add(root);
 	}
 	
 	public BinaryNode getRoot() {
@@ -22,10 +25,14 @@ public class BinaryTree {
 		return nodes.add(node);
 	}
 	
+	public List<BinaryNode> getNodeList() {
+		return nodes;
+	}
+	
 	public BinaryNode getNode(BinaryNode target) {
 		
 		for(BinaryNode node: nodes) {
-			if(node.equals(target))
+			if(node.getValue() == target.getValue())
 				return node;
 		}
 		
