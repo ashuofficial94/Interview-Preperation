@@ -22,7 +22,8 @@ public class Main {
 			System.out.println("2. Print Tree");
 			System.out.println("3. Prefix");
 			System.out.println("4. Infix");
-			System.out.println("5. Postfix\n");
+			System.out.println("5. Postfix");
+			System.out.println("6. New Tree\n");
 			
 			System.out.print("Enter your choice: ");
 			int choice = Integer.parseInt(br.readLine());
@@ -69,9 +70,16 @@ public class Main {
 				System.out.println();
 				break;
 				
+			case 6:
+				
+				System.out.print("Enter Root: ");
+				root_val = Integer.parseInt(br.readLine());
+				tree = new BinaryTree(new BinaryNode(root_val));
+				break;
+				
 			default:
 				exit = true;
-				System.out.println("\nThanks for using Trees. Bye.\n");
+				System.out.println("Thanks for using Trees. Bye.\n");
 				break;
 			}
 		}

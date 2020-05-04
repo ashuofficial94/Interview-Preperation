@@ -14,7 +14,7 @@ public class BinaryTreeOperations {
 	public BinaryTree initializeTree(BinaryTree tree) throws IOException {
 
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		System.out.println("5Enter -1 as a Parent to save.");
+		System.out.println("Enter -1 as a Parent to save.");
 		System.out.println("Parent can only be the nodes which already exist.");
 		System.out.println("Enter any alphabet as a null child.");
 		
