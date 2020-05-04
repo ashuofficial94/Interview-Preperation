@@ -3,13 +3,18 @@ package trees;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-
+import java.util.ArrayList;
+import java.util.List;
 public class BinaryTreeOperations {
-
+	
+	private List<BinaryNode> prefix;
+	private List<BinaryNode> postfix;
+	private List<BinaryNode> infix;
+	
 	public BinaryTree initializeTree(BinaryTree tree) throws IOException {
 
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		System.out.println("\nEnter -1 as a Parent to save.");
+		System.out.println("5Enter -1 as a Parent to save.");
 		System.out.println("Parent can only be the nodes which already exist.");
 		System.out.println("Enter any alphabet as a null child.");
 		
@@ -85,5 +90,53 @@ public class BinaryTreeOperations {
 		}
 		
 		return;
+	}
+
+	public List<BinaryNode> getPrefix(BinaryTree tree) {
+		
+		prefix = new ArrayList<BinaryNode>();
+		prefixTraversal(tree, tree.getRoot());
+		return prefix;
+	}
+	
+	private void prefixTraversal(BinaryTree tree, BinaryNode curr) {
+		
+		if(curr != null) {
+			prefix.add(curr);
+			prefixTraversal(tree, curr.getLeft());
+			prefixTraversal(tree, curr.getRight());
+		}
+	}
+	
+	public List<BinaryNode> getInfix(BinaryTree tree) {
+		
+		infix = new ArrayList<BinaryNode>();
+		infixTraversal(tree, tree.getRoot());
+		return infix;
+	}
+	
+	private void infixTraversal(BinaryTree tree, BinaryNode curr) {
+		
+		if(curr != null) {
+			infixTraversal(tree, curr.getLeft());
+			infix.add(curr);
+			infixTraversal(tree, curr.getRight());
+		}
+	}
+	
+	public List<BinaryNode> getPostfix(BinaryTree tree) {
+		
+		postfix = new ArrayList<BinaryNode>();
+		postfixTraversal(tree, tree.getRoot());
+		return postfix;
+	}
+	
+	private void postfixTraversal(BinaryTree tree, BinaryNode curr) {
+		
+		if(curr != null) {
+			postfixTraversal(tree, curr.getLeft());
+			postfixTraversal(tree, curr.getRight());
+			postfix.add(curr);
+		}
 	}
 }

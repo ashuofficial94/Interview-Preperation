@@ -7,11 +7,11 @@ public class Stack {
 
 	private List<Node> stack;
 	
-	Stack() {
+	public Stack() {
 		stack = new ArrayList<Node>();
 	}
 	
-	Stack(Node node) {
+	public Stack(Node node) {
 		stack = new ArrayList<Node>();
 		stack.add(node);
 	}
