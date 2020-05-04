@@ -24,7 +24,8 @@ public class Main {
 			System.out.println("3. Prefix");
 			System.out.println("4. Infix");
 			System.out.println("5. Postfix");
-			System.out.println("6. New Tree\n");
+			System.out.println("6. New Tree");
+			System.out.println("7. Height of Tree\n");
 			
 			System.out.print("Enter your choice: ");
 			int choice = Integer.parseInt(br.readLine());
@@ -77,6 +78,11 @@ public class Main {
 				root_val = Integer.parseInt(br.readLine());
 				tree = new BinaryTree(new BinaryNode(root_val));
 				opr = new BinaryTreeOperations(tree);
+				break;
+				
+			case 7:
+				
+				System.out.println("Height of Tree: " + opr.height(tree.getRoot()));
 				break;
 				
 			default:

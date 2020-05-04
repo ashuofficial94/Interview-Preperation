@@ -74,6 +74,28 @@ public class BinaryTreeOperations {
 		return tree;
 	}
 
+	public int height(BinaryNode curr) {
+		
+		if(curr == null)
+			return -1;
+		
+		if(curr.getLeft() == null) {
+			if(curr.getRight() == null)
+				return 0;
+			
+			else
+				return 1 + height(curr.getRight());
+		}
+		
+		else {
+			if(curr.getRight() == null)
+				return 1 + height(curr.getLeft());
+			
+			else 
+				return 1 + Integer.max(height(curr.getLeft()), height(curr.getRight()));
+		}
+	}
+	
 	public void printTree() {
 		
 		for(BinaryNode node: tree.getNodeList()) {
