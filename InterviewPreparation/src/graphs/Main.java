@@ -10,21 +10,23 @@ public class Main {
 	public static void main(String[] args) throws IOException {
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+		Graph graph = new Graph();
+		GraphOperations opr = new GraphOperations(graph);
 		
-		GraphOperations opr = new GraphOperations();
-		Graph graph = opr.initializeGraph();
+		graph = opr.initializeGraph();
 
 		boolean exit = false;
 		
 		while(!exit) {
 			
-			System.out.println();
-			System.out.println("1. Initialize a Graph");
+			System.out.println("\n1. Initialize a Graph");
 			System.out.println("2. Print the Graph");
 			System.out.println("3. Breadth First Traversal");
 			System.out.println("4. Depth First Traversal");
+			System.out.println("5. Connected Components\n");
 			
-			System.out.print("\nEnter a choice: ");
+			System.out.print("Enter a choice: ");
 			int choice = Integer.parseInt(br.readLine());
 
 			switch(choice) {
@@ -63,6 +65,22 @@ public class Main {
 				for(Node node: dfs_traversal) {
 					System.out.print(node.getValue() + " ");
 				}
+				break;
+				
+			case 5:
+				
+				List<List<Node>> components = opr.connComponents(graph);
+				System.out.println();
+				
+				for(List<Node> connected : components) {
+					
+					System.out.print("( ");
+					for(Node node: connected) {
+						System.out.print(node.getValue() + " ");
+					}
+					System.out.print(") ");
+				}
+				
 				break;
 				
 			default:

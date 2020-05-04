@@ -78,13 +78,13 @@ public class BinaryTreeOperations {
 				System.out.print(node.getLeft().getValue() + " ");
 			
 			else
-				System.out.print("N ");
+				System.out.print("x ");
 			
 			if(node.getRight() != null) 
 				System.out.print(node.getRight().getValue() + " ");
 			
 			else
-				System.out.print("N ");
+				System.out.print("x ");
 			
 			System.out.println();
 		}

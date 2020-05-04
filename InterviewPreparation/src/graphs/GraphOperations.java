@@ -9,6 +9,12 @@ import java.util.List;
 import java.util.Map;
 
 public class GraphOperations {
+	
+	private Map<Node, Boolean> visited;
+	
+	GraphOperations(Graph graph) {
+		visited = new HashMap<Node, Boolean>();
+	}
 
 	public Graph initializeGraph() throws IOException {
 		
@@ -91,24 +97,18 @@ public class GraphOperations {
 		}
 			
 		List<Node> bfs = new ArrayList<Node>();
-		Map<Node, Boolean> visited = new HashMap<Node, Boolean>();
 		Queue queue = new Queue(s_node);
-		
-		for(Node vertex: graph.getVertices()) {
-			visited.put(vertex, false);
-		}
-		
+		bfs.add(s_node);
 		visited.replace(s_node, true);
 		
 		while(queue.getQueue().size() != 0) {
 			
 			Node node = queue.dequeue();
-			bfs.add(node);
 			
 			for(Node adj: node.getAdjacents()) {
-				
-				if(!visited.get(adj)) {
+				if(!bfs.contains(adj)) {
 					queue.enqueue(adj);
+					bfs.add(adj);
 					visited.replace(adj, true);
 				}
 			}
@@ -127,12 +127,9 @@ public class GraphOperations {
 		}
 			
 		List<Node> dfs = new ArrayList<Node>();
-		Map<Node, Boolean> visited = new HashMap<Node, Boolean>();
 		Stack stack = new Stack(s_node);
 		
-		for(Node vertex: graph.getVertices()) {
-			visited.put(vertex, false);
-		}
+		initializeVisited(graph);
 		
 		visited.replace(s_node, true);
 		
@@ -160,4 +157,40 @@ public class GraphOperations {
 		
 		return dfs;
 	}
+
+	public List<List<Node>> connComponents(Graph graph) {
+		
+		List<List<Node>> components = new ArrayList<List<Node>>();
+		
+		initializeVisited(graph);
+		Node unvisited = notVisited();
+		
+		while(unvisited != null) {	
+			List<Node> connected = breadthFirst(graph, unvisited.getValue());
+			components.add(connected);
+			unvisited = notVisited();
+		}
+		
+		System.out.println("\nNo. of connected Components in the Graph : " + components.size());
+		return components;
+	}
+	
+	public Node notVisited() {
+		
+		for(Node node: visited.keySet()) {
+			if(!visited.get(node))
+				return node;
+		}
+		
+		return null;
+	}
+	
+	private void initializeVisited(Graph graph) {
+		
+		for(Node node: graph.getVertices()) {
+			visited.put(node, false);
+		}
+		return;
+	}
 }
+
