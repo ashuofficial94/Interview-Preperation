@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.List;
+
 public class Main {
 
 	public static void main(String arge[]) throws IOException{
@@ -21,9 +22,9 @@ public class Main {
 			
 			System.out.println("\n1. Add to Tree");
 			System.out.println("2. Print Tree");
-			System.out.println("3. Prefix");
-			System.out.println("4. Infix");
-			System.out.println("5. Postfix");
+			System.out.println("3. Preorder");
+			System.out.println("4. Inorder");
+			System.out.println("5. Postorder");
 			System.out.println("6. New Tree");
 			System.out.println("7. Height of Tree\n");
 			
@@ -42,20 +43,20 @@ public class Main {
 				break;
 				
 			case 3:
-				List<BinaryNode> prefix = opr.getPrefix();
-				System.out.print("Prefix : ");
+				List<BinaryNode> preorder = opr.getPreorder();
+				System.out.print("Preorder : ");
 				
-				for(BinaryNode node: prefix) 
+				for(BinaryNode node: preorder) 
 					System.out.print(node.getValue() + " ");
 				
 				System.out.println();
 				break;
 				
 			case 4:
-				List<BinaryNode> infix = opr.getInfix();
-				System.out.print("Infix : ");
+				List<BinaryNode> inorder = opr.getInorder();
+				System.out.print("Inorder : ");
 				
-				for(BinaryNode node: infix) 
+				for(BinaryNode node: inorder) 
 					System.out.print(node.getValue() + " ");
 				
 				System.out.println();
@@ -63,10 +64,10 @@ public class Main {
 				
 			case 5:
 
-				List<BinaryNode> postfix = opr.getPostfix();
-				System.out.print("Postfix : ");
+				List<BinaryNode> postorder = opr.getPostorder();
+				System.out.print("Postorder : ");
 				
-				for(BinaryNode node: postfix) 
+				for(BinaryNode node: postorder) 
 					System.out.print(node.getValue() + " ");
 				
 				System.out.println();

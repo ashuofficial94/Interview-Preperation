@@ -5,11 +5,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+
 public class BinaryTreeOperations {
 	
-	private List<BinaryNode> prefix;
-	private List<BinaryNode> postfix;
-	private List<BinaryNode> infix;
 	private BinaryTree tree;
 	
 	BinaryTreeOperations(BinaryTree tree) {
@@ -40,7 +38,7 @@ public class BinaryTreeOperations {
 			}
 			
 			if(parent == -1) {
-				System.out.println("Tree Saved.");
+				System.out.println("Tree Saved.\n");
 				break;
 			}
 			
@@ -52,22 +50,48 @@ public class BinaryTreeOperations {
 				continue;
 			}
 			
-			System.out.print("Left Child : ");
-			String l_child = br.readLine();
-			
-			if(valid.isNumber(l_child)) {
-				BinaryNode l_node = new BinaryNode(Integer.parseInt(l_child));
-				parent_node.setLeft(l_node);
-				tree.addNode(l_node);
+			if(parent_node.getLeft() != null && parent_node.getRight() != null) {
+				System.out.println("Parent already have both childs");
+				continue;
 			}
 			
-			System.out.print("Right Child : ");
-			String r_child = br.readLine();
+			if(parent_node.getLeft() == null) {
 			
-			if(valid.isNumber(r_child)) {
-				BinaryNode r_node = new BinaryNode(Integer.parseInt(r_child));
-				parent_node.setRight(r_node);
-				tree.addNode(r_node);
+				System.out.print("Left Child : ");
+				String l_child = br.readLine();
+				
+				if(valid.isNumber(l_child)) {
+					BinaryNode l_node = new BinaryNode(Integer.parseInt(l_child));
+					
+					if(tree.getNode(l_node) == null) {
+						parent_node.setLeft(l_node);
+						tree.addNode(l_node);
+					}	
+					else {
+						System.out.println(l_child + " already exists");
+						continue;
+					}
+				}
+			}
+			
+			if(parent_node.getRight() == null) {
+				
+				System.out.print("Right Child : ");
+				String r_child = br.readLine();
+				
+				if(valid.isNumber(r_child)) {
+					BinaryNode r_node = new BinaryNode(Integer.parseInt(r_child));
+					
+					if(tree.getNode(r_node) == null) {
+						parent_node.setRight(r_node);
+						tree.addNode(r_node);
+					}				
+					else {
+						System.out.println(r_child + " already exists");
+						continue;
+					}
+				}
+				
 			}
 		}
 		
@@ -119,51 +143,51 @@ public class BinaryTreeOperations {
 		return;
 	}
 
-	public List<BinaryNode> getPrefix() {
+	public List<BinaryNode> getPreorder() {
 		
-		prefix = new ArrayList<BinaryNode>();
-		prefixTraversal(tree.getRoot());
-		return prefix;
+		List<BinaryNode> preorder = new ArrayList<BinaryNode>();
+		preorderTraversal(tree.getRoot(), preorder);
+		return preorder;
 	}
 	
-	private void prefixTraversal(BinaryNode curr) {
+	private void preorderTraversal(BinaryNode curr, List<BinaryNode> preorder) {
 		
 		if(curr != null) {
-			prefix.add(curr);
-			prefixTraversal(curr.getLeft());
-			prefixTraversal(curr.getRight());
+			preorder.add(curr);
+			preorderTraversal(curr.getLeft(), preorder);
+			preorderTraversal(curr.getRight(), preorder);
 		}
 	}
 	
-	public List<BinaryNode> getInfix() {
+	public List<BinaryNode> getInorder() {
 		
-		infix = new ArrayList<BinaryNode>();
-		infixTraversal(tree.getRoot());
-		return infix;
+		List<BinaryNode> inorder = new ArrayList<BinaryNode>();
+		inorderTraversal(tree.getRoot(), inorder);
+		return inorder;
 	}
 	
-	private void infixTraversal(BinaryNode curr) {
+	private void inorderTraversal(BinaryNode curr, List<BinaryNode> inorder) {
 		
 		if(curr != null) {
-			infixTraversal(curr.getLeft());
-			infix.add(curr);
-			infixTraversal(curr.getRight());
+			inorderTraversal(curr.getLeft(), inorder);
+			inorder.add(curr);
+			inorderTraversal(curr.getRight(), inorder);
 		}
 	}
 	
-	public List<BinaryNode> getPostfix() {
+	public List<BinaryNode> getPostorder() {
 		
-		postfix = new ArrayList<BinaryNode>();
-		postfixTraversal(tree.getRoot());
-		return postfix;
+		List <BinaryNode> postorder = new ArrayList<BinaryNode>();
+		postorderTraversal(tree.getRoot(), postorder);
+		return postorder;
 	}
 	
-	private void postfixTraversal(BinaryNode curr) {
+	private void postorderTraversal(BinaryNode curr, List<BinaryNode> postorder) {
 		
 		if(curr != null) {
-			postfixTraversal(curr.getLeft());
-			postfixTraversal(curr.getRight());
-			postfix.add(curr);
+			postorderTraversal(curr.getLeft(), postorder);
+			postorderTraversal(curr.getRight(), postorder);
+			postorder.add(curr);
 		}
 	}
 }
