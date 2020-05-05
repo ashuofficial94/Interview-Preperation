@@ -20,7 +20,6 @@ public class GraphOperations {
 	public Graph initializeGraph() throws IOException {
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		graph = new Graph();
 		System.out.println("\nEnter only a single value to add a vertex");
 		System.out.println("Or Pair values to add edge Or -1 to save.\n");
 
