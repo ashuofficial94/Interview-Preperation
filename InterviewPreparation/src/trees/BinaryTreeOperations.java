@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class BinaryTreeOperations {
 	
 	private BinaryTree tree;
@@ -19,7 +20,7 @@ public class BinaryTreeOperations {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		System.out.println("Enter -1 as a Parent to save.");
 		System.out.println("Parent can only be the nodes which already exist.");
-		System.out.println("Enter any alphabet as a null child.");
+		System.out.println("Press Enter as a null child.");
 		
 		Validation valid = new Validation();
 		int parent;
@@ -120,9 +121,15 @@ public class BinaryTreeOperations {
 		}
 	}
 	
-	public void printTree() {
+	public void printTree(BinaryTree tree) {
+		
+		System.out.println();
 		
 		for(BinaryNode node: tree.getNodeList()) {
+			
+			if(node.getLeft() == null && node.getRight() == null)
+				continue;
+			
 			System.out.print(node.getValue() + " : ");
 			
 			if(node.getLeft() != null) 
@@ -140,6 +147,7 @@ public class BinaryTreeOperations {
 			System.out.println();
 		}
 		
+		System.out.println();
 		return;
 	}
 

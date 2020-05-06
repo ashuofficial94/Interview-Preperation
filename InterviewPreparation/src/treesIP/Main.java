@@ -3,8 +3,6 @@ package treesIP;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class Main {
@@ -12,29 +10,21 @@ public class Main {
 	public static void main(String arge[]) throws IOException{
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		System.out.print("Enter postorder : ");
+
+		System.out.print("Enter Root : ");
+		int root_val = Integer.parseInt(br.readLine());
+		BinaryTree tree = new BinaryTree(new BinaryNode(root_val));
 		
-		String[] input = br.readLine().trim().split(" ");
-		List<Integer> postorder = new ArrayList<Integer>();
+		InitializeTree init = new InitializeTree();
+		tree = init.initializeTree(tree);
 		
-		for(String val: input) {
-			postorder.add(Integer.parseInt(val));
-		}
+		System.out.println("Tree - \n");
+		init.printTree(tree);
 		
-		System.out.print("Enter indorder : ");
+		MirrorTrees mir = new MirrorTrees(tree);
+		System.out.println("Mirror Tree - \n");
+		init.printTree(mir.getMirror());
 		
-		input = br.readLine().trim().split(" ");
-		List<Integer> inorder = new ArrayList<Integer>();
-		
-		for(String val: input) {
-			inorder.add(Integer.parseInt(val));
-		}
-		
-		ConstructPostIn cons = new ConstructPostIn(postorder, inorder);
-		BinaryTree tree = cons.constructPostIn();
-		
-		InitializeTree init = new InitializeTree(tree);
-		init.printTree();
 	}
 		
 }

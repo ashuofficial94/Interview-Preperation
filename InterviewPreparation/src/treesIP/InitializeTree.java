@@ -6,13 +6,7 @@ import java.io.InputStreamReader;
 
 public class InitializeTree {
 
-	private BinaryTree tree;
-	
-	InitializeTree(BinaryTree tree) {
-		this.tree = tree;
-	}
-	
-	public BinaryTree initializeTree() throws IOException {
+	public BinaryTree initializeTree(BinaryTree tree) throws IOException {
 
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		System.out.println("\nEnter -1 as a Parent to save.");
@@ -96,11 +90,15 @@ public class InitializeTree {
 		return tree;
 	}
 	
-	public void printTree() {
+	public void printTree(BinaryTree tree) {
 		
 		System.out.println();
 		
 		for(BinaryNode node: tree.getNodeList()) {
+			
+			if(node.getLeft() == null && node.getRight() == null)
+				continue;
+			
 			System.out.print(node.getValue() + " : ");
 			
 			if(node.getLeft() != null) 

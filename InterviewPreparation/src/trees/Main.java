@@ -39,7 +39,7 @@ public class Main {
 				break;
 				
 			case 2: 
-				opr.printTree();
+				opr.printTree(tree);
 				break;
 				
 			case 3:
