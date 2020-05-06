@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-
 public class Main {
 
 	public static void main(String arge[]) throws IOException{
@@ -20,10 +19,13 @@ public class Main {
 		
 		System.out.println("Tree - \n");
 		init.printTree(tree);
-
-		NodesAtLevel node_lev = new NodesAtLevel();
-		node_lev.nodesAtLevel(tree);
 		
+		LevelOrder lo = new LevelOrder();
+		
+		System.out.println("Level Order : ");
+		for(BinaryNode node: lo.levelOrder(tree)) {
+			System.out.print(node.getValue()+" ");
+		}
 	}
 		
 }
