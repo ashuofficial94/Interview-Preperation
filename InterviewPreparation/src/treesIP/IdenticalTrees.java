@@ -6,11 +6,8 @@ public class IdenticalTrees {
 		
 		if(curr1 == null && curr2 == null)
 			return true;
-		
-		else if((curr1 != null && curr2 == null) || (curr1 == null && curr2 != null))
-			return false;
-		
-		else {
+
+		else if(curr1 != null && curr2 != null) {
 			
 			boolean val = (curr1.getValue() == curr2.getValue());
 			boolean left = identicalTrees(curr1.getLeft(), curr2.getLeft());
@@ -19,5 +16,7 @@ public class IdenticalTrees {
 			return val && left && right;
 		}
 		
+		else
+			return false;
 	}
 }

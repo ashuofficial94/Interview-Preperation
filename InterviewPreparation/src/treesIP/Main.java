@@ -3,6 +3,8 @@ package treesIP;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Main {
@@ -10,33 +12,29 @@ public class Main {
 	public static void main(String arge[]) throws IOException{
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
-		System.out.print("Enter Root : ");
-		int root_val = Integer.parseInt(br.readLine());
-		BinaryTree tree1 = new BinaryTree(new BinaryNode(root_val));
+		System.out.print("Enter postorder : ");
 		
-		InitializeTree init1 = new InitializeTree(tree1);
-		tree1 = init1.initializeTree();
+		String[] input = br.readLine().trim().split(" ");
+		List<Integer> postorder = new ArrayList<Integer>();
 		
-		System.out.print("Enter Root : ");
-		root_val = Integer.parseInt(br.readLine());
-		BinaryTree tree2 = new BinaryTree(new BinaryNode(root_val));
+		for(String val: input) {
+			postorder.add(Integer.parseInt(val));
+		}
 		
-		InitializeTree init2 = new InitializeTree(tree2);
-		tree2 = init2.initializeTree();
+		System.out.print("Enter indorder : ");
 		
-		System.out.println("Tree 1 - \n");
-		init1.printTree();
-		System.out.println("Tree 2 - \n");
-		init2.printTree();
+		input = br.readLine().trim().split(" ");
+		List<Integer> inorder = new ArrayList<Integer>();
 		
-		IdenticalTrees iden = new IdenticalTrees();
+		for(String val: input) {
+			inorder.add(Integer.parseInt(val));
+		}
 		
-		if(iden.identicalTrees(tree1.getRoot(), tree2.getRoot()))
-			System.out.println("Identical Trees");
+		ConstructPostIn cons = new ConstructPostIn(postorder, inorder);
+		BinaryTree tree = cons.constructPostIn();
 		
-		else
-			System.out.println("Not Identical");
+		InitializeTree init = new InitializeTree(tree);
+		init.printTree();
 	}
 		
 }

@@ -98,6 +98,8 @@ public class InitializeTree {
 	
 	public void printTree() {
 		
+		System.out.println();
+		
 		for(BinaryNode node: tree.getNodeList()) {
 			System.out.print(node.getValue() + " : ");
 			
