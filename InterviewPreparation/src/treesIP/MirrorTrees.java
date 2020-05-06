@@ -2,15 +2,15 @@ package treesIP;
 
 public class MirrorTrees {
 
-	private BinaryNode root1;
-	private BinaryNode root2;
+	private BinaryTree tree1;
+	private BinaryTree tree2;
 	
 	private BinaryTree tree;
 	private BinaryTree mirror;
 	
 	MirrorTrees(BinaryTree tree1, BinaryTree tree2) {
-		root1 = tree1.getRoot();
-		root2 = tree2.getRoot();
+		this.tree1 = tree1;
+		this.tree2 = tree2;
 	}
 	
 	MirrorTrees(BinaryTree tree) {
@@ -70,7 +70,7 @@ public class MirrorTrees {
 	} */
 	
 	public boolean mirrorTreesCheck() {
-		return mirrorCheck(root1, root2);
+		return mirrorCheck(tree1.getRoot(), tree2.getRoot());
 	}
 	
 	private boolean mirrorCheck(BinaryNode node1, BinaryNode node2) {

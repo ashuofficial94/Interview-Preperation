@@ -20,10 +20,9 @@ public class Main {
 		
 		System.out.println("Tree - \n");
 		init.printTree(tree);
-		
-		MirrorTrees mir = new MirrorTrees(tree);
-		System.out.println("Mirror Tree - \n");
-		init.printTree(mir.getMirror());
+
+		NodesAtLevel node_lev = new NodesAtLevel();
+		node_lev.nodesAtLevel(tree);
 		
 	}
 		
