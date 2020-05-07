@@ -14,6 +14,10 @@ public class Tree {
 		list.add(root);
 	}
 	
+	public Node getRoot() {
+		return root;
+	}
+	
 	public List<Node> getNodes() {
 		return list;
 	}

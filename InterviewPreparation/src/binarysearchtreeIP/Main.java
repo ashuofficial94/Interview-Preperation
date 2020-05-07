@@ -23,6 +23,20 @@ public class Main {
 		InitializeTree init = new InitializeTree();
 		Tree tree = init.initializeTree(elem);
 		init.printTree(tree);
-		
+
+		while(true) {
+			System.out.print("\nEnter the first number : ");
+			int val = Integer.parseInt(br.readLine());
+			Node node1 = new Node(val);
+			
+			System.out.print("Enter the second number : ");
+			val = Integer.parseInt(br.readLine());
+			Node node2 = new Node(val);
+			
+			LastComAncestor lca = new LastComAncestor();
+			Node com = lca.lastCommAncestor(tree, node1, node2);
+			
+			System.out.println("Least Common Node : " + com.getValue());
+		}
 	}
 }

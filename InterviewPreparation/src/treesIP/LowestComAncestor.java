@@ -1,6 +1,5 @@
 package treesIP;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class LowestComAncestor {
@@ -38,41 +37,29 @@ public class LowestComAncestor {
 	
 	public BinaryNode lowestComAncestor(BinaryTree tree, BinaryNode target1, BinaryNode target2) {
 		
-		List<BinaryNode> path1 = findPath(tree, target1);
-		List<BinaryNode> path2 = findPath(tree, target2);
+		FindPath fp = new FindPath();
+		List<BinaryNode> path1 = fp.findPath(tree, target1);
+		List<BinaryNode> path2 = fp.findPath(tree, target2);
 		
-		for(BinaryNode node : path1) {
-			if(path2.contains(node))
-				return node;
+		int index1 = path1.size()-1;
+		int index2 = path2.size()-1;
+		
+		while(index1 >= 0 && index2 >= 0) {
+			
+			if(!path1.get(index1).equals(path2.get(index2)))
+				return path1.get(index1+1);
+			
+			index1--;
+			index2--;
 		}
+		
+		if(index1 == -1)
+			return path1.get(0);
+		
+		if(index2 == -1)
+			return path2.get(0);
 		
 		return null;
-	}
-	
-	
-	private List<BinaryNode> findPath(BinaryTree tree, BinaryNode target) {
-		
-		List <BinaryNode> path = new ArrayList<BinaryNode>();
-		constructPath(tree.getRoot(), target, path);
-		return path;
-	}
-	
-	private boolean constructPath(BinaryNode node, BinaryNode target, List<BinaryNode> path) {
-
-		if(node == null)
-			return false;
-		
-		if(node.getValue() == target.getValue()) {
-			path.add(node);
-			return true;
-		}
-		
-		if(constructPath(node.getLeft(), target, path) || constructPath(node.getRight(), target, path)) {
-			path.add(node);
-			return true;
-		}
-		
-		return false;
 	}
 	
 }
