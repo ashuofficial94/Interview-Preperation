@@ -1,11 +1,11 @@
 package treesIP;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Main {
-
+public class LowestComAncestor {
+	
+	/*
 	public static void main(String arge[]) throws IOException{
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -34,5 +34,45 @@ public class Main {
 			System.out.println("Lowest Common Ancestor : " + common.getValue() + "\n");
 		}
 	}
+	*/
+	
+	public BinaryNode lowestComAncestor(BinaryTree tree, BinaryNode target1, BinaryNode target2) {
 		
+		List<BinaryNode> path1 = findPath(tree, target1);
+		List<BinaryNode> path2 = findPath(tree, target2);
+		
+		for(BinaryNode node : path1) {
+			if(path2.contains(node))
+				return node;
+		}
+		
+		return null;
+	}
+	
+	
+	private List<BinaryNode> findPath(BinaryTree tree, BinaryNode target) {
+		
+		List <BinaryNode> path = new ArrayList<BinaryNode>();
+		constructPath(tree.getRoot(), target, path);
+		return path;
+	}
+	
+	private boolean constructPath(BinaryNode node, BinaryNode target, List<BinaryNode> path) {
+
+		if(node == null)
+			return false;
+		
+		if(node.getValue() == target.getValue()) {
+			path.add(node);
+			return true;
+		}
+		
+		if(constructPath(node.getLeft(), target, path) || constructPath(node.getRight(), target, path)) {
+			path.add(node);
+			return true;
+		}
+		
+		return false;
+	}
+	
 }
