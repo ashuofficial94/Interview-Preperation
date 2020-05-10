@@ -19,20 +19,14 @@ public class Main {
 		
 		System.out.println("Tree - \n");
 		init.printTree(tree);
-		LowestComAncestor lca = new LowestComAncestor();
+
+		TreeToDLinkList t2d = new TreeToDLinkList();
+		BinaryNode head = t2d.treeToDLinkList(tree);
+
+		System.out.println();
+		for(BinaryNode node = head; node != null; 
+				System.out.print(node.getValue() + " "),node = node.getRight());
 		
-		while(true) {
-			System.out.print("Enter the first node : ");
-			int node_val = Integer.parseInt(br.readLine());
-			BinaryNode target1 = new BinaryNode(node_val);
-			
-			System.out.print("Enter the second node : ");
-			node_val = Integer.parseInt(br.readLine());
-			BinaryNode target2 = new BinaryNode(node_val);
-	
-			BinaryNode common = lca.lowestComAncestor(tree, target1, target2);
-			System.out.println("Lowest Common Ancestor : " + common.getValue() + "\n");
-		}
 	}
 		
 }

@@ -43,7 +43,8 @@ public class InitializeTree {
 			}
 			
 			if(parent_node.getLeft() != null && parent_node.getRight() != null) {
-				System.out.println("Parent already have both childs");
+				System.out.println("Left Child : " + parent_node.getLeft().getValue());
+				System.out.println("Right Child : " + parent_node.getRight().getValue());
 				continue;
 			}
 			
@@ -66,6 +67,10 @@ public class InitializeTree {
 				}
 			}
 			
+			else {
+				System.out.println("Left Child : " + parent_node.getLeft().getValue());
+			}
+			
 			if(parent_node.getRight() == null) {
 				
 				System.out.print("Right Child : ");
@@ -84,6 +89,10 @@ public class InitializeTree {
 					}
 				}
 				
+			}
+			
+			else {
+				System.out.println("Right Child : " + parent_node.getRight().getValue());
 			}
 		}
 		

@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FindPath {
+	
+	//The path to a node is the state of the depth first search stack
+	//When it is at the Top.
 
 	/*public static void main(String arge[]) throws IOException{
 		
