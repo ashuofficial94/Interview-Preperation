@@ -20,12 +20,15 @@ public class Main {
 		System.out.println("Tree - \n");
 		init.printTree(tree);
 
-		TreeToDLinkList t2d = new TreeToDLinkList();
-		BinaryNode head = t2d.treeToDLinkList(tree);
-
+		DiameterBinary db = new DiameterBinary();
+		System.out.print("Diameter : ");
+		
+		for(BinaryNode diameter : db.diameterListBinary(tree)) {
+			System.out.print(diameter.getValue() + " ");
+		}
+		
 		System.out.println();
-		for(BinaryNode node = head; node != null; 
-				System.out.print(node.getValue() + " "),node = node.getRight());
+		System.out.print("Length : " + (db.diameterBinary(tree)-1));
 		
 	}
 		
