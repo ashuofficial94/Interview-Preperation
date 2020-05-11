@@ -3,6 +3,7 @@ package treesIP;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.List;
 
 public class Main {
 
@@ -21,10 +22,12 @@ public class Main {
 		init.printTree(tree);
 
 		DiameterBinary db = new DiameterBinary();
-		System.out.print("Diameter : ");
 		
-		for(BinaryNode diameter : db.diameterListBinary(tree)) {
-			System.out.print(diameter.getValue() + " ");
+		List<BinaryNode> diameter = db.diameterListBinary(tree);
+		System.out.print("\nDiameter : ");
+		
+		for(BinaryNode node : diameter) {
+			System.out.print(node.getValue() + " ");
 		}
 		
 		System.out.println();
