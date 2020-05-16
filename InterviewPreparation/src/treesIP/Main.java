@@ -21,18 +21,31 @@ public class Main {
 		System.out.println("Tree - \n");
 		init.printTree(tree);
 
-		DiameterBinary db = new DiameterBinary();
+		View view = new View(tree);
 		
-		List<BinaryNode> diameter = db.diameterListBinary(tree);
-		System.out.print("\nDiameter : ");
+		List<BinaryNode> top_view = view.topView();
+		List<BinaryNode> bottom_view = view.bottomView();
+		List<BinaryNode> left_view = view.leftView();
+		List<BinaryNode> right_view = view.rightView();
 		
-		for(BinaryNode node : diameter) {
-			System.out.print(node.getValue() + " ");
-		}
+		System.out.print("Top View: ");
+		printList(top_view);
 		
-		System.out.println();
-		System.out.print("Length : " + (db.diameterBinary(tree)-1));
+		System.out.print("Bottom View: ");
+		printList(bottom_view);
 		
+		System.out.print("Left View: ");
+		printList(left_view);
+		
+		System.out.print("Right View: ");
+		printList(right_view);
 	}
 		
+	public static void printList(List<BinaryNode> list) {
+		
+		for(BinaryNode node: list) 
+			System.out.print(node.getValue()+" ");
+		
+		System.out.println();
+	}
 }
