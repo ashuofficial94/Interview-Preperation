@@ -38,11 +38,9 @@ public class MirrorTrees {
 			m_node.setRight(m_right);
 			
 			if(m_left != null) {		
-				mirror.addNode(m_left);
 				constructMirror(m_left);
 			}
 			if(m_right != null) {
-				mirror.addNode(m_right);
 				constructMirror(m_right);
 			}
 			

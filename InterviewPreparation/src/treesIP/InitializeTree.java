@@ -3,6 +3,8 @@ package treesIP;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 public class InitializeTree {
 
@@ -58,7 +60,6 @@ public class InitializeTree {
 					
 					if(tree.getNode(l_node) == null) {
 						parent_node.setLeft(l_node);
-						tree.addNode(l_node);
 					}	
 					else {
 						System.out.println(l_child + " already exists");
@@ -81,7 +82,6 @@ public class InitializeTree {
 					
 					if(tree.getNode(r_node) == null) {
 						parent_node.setRight(r_node);
-						tree.addNode(r_node);
 					}				
 					else {
 						System.out.println(r_child + " already exists");
@@ -101,30 +101,36 @@ public class InitializeTree {
 	
 	public void printTree(BinaryTree tree) {
 		
-		System.out.println();
+		List<BinaryNode> list = new ArrayList<BinaryNode>();
+		list.add(tree.getRoot());
 		
-		for(BinaryNode node: tree.getNodeList()) {
+		while(list.size() > 0) {
 			
-			if(node.getLeft() == null && node.getRight() == null)
+			if(list.get(0).getLeft() == null && list.get(0).getRight() == null) {
+				list.remove(0);
 				continue;
+			}
 			
-			System.out.print(node.getValue() + " : ");
+			System.out.print(list.get(0).getValue() + " : ");
 			
-			if(node.getLeft() != null) 
-				System.out.print(node.getLeft().getValue() + " ");
-			
-			else
-				System.out.print("x ");
-			
-			if(node.getRight() != null) 
-				System.out.print(node.getRight().getValue() + " ");
+			if(list.get(0).getLeft() != null) {
+				list.add(list.get(0).getLeft());
+				System.out.print(list.get(0).getLeft().getValue() + " ");
+			}
 			
 			else
 				System.out.print("x ");
+				
+			if(list.get(0).getRight() !=  null) {
+				list.add(list.get(0).getRight());
+				System.out.println(list.get(0).getRight().getValue());
+			}
+				
+			else
+				System.out.println("x");
 			
-			System.out.println();
+			list.remove(0);
 		}
-		
 		System.out.println();
 		return;
 	}

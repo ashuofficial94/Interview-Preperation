@@ -3,7 +3,6 @@ package treesIP;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.List;
 
 public class Main {
 
@@ -18,34 +17,21 @@ public class Main {
 		InitializeTree init = new InitializeTree();
 		tree = init.initializeTree(tree);
 		
-		System.out.println("Tree - \n");
+		System.out.println("Tree - ");
 		init.printTree(tree);
-
-		View view = new View(tree);
 		
-		List<BinaryNode> top_view = view.topView();
-		List<BinaryNode> bottom_view = view.bottomView();
-		List<BinaryNode> left_view = view.leftView();
-		List<BinaryNode> right_view = view.rightView();
-		
-		System.out.print("Top View: ");
-		printList(top_view);
-		
-		System.out.print("Bottom View: ");
-		printList(bottom_view);
-		
-		System.out.print("Left View: ");
-		printList(left_view);
-		
-		System.out.print("Right View: ");
-		printList(right_view);
-	}
-		
-	public static void printList(List<BinaryNode> list) {
-		
-		for(BinaryNode node: list) 
-			System.out.print(node.getValue()+" ");
-		
-		System.out.println();
+		while(true) {
+			System.out.print("Enter Root : ");
+			root_val = Integer.parseInt(br.readLine());
+			BinaryTree sub_tree = new BinaryTree(new BinaryNode(root_val));
+	
+			sub_tree = init.initializeTree(sub_tree);
+			
+			System.out.println("Sub Tree - ");
+			init.printTree(sub_tree);
+			
+			SubTree sub = new SubTree();
+			System.out.println(sub.subTree(sub_tree, tree) + "\n");
+		}
 	}
 }

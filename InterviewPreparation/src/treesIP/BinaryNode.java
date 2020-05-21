@@ -1,7 +1,5 @@
 package treesIP;
 
-import treesIP.BinaryNode;
-
 public class BinaryNode {
 	
 	private int value;

@@ -29,7 +29,6 @@ public class ConstructPostIn {
 		if(post_temp.size() == 0)
 			return;
 
-		tree.addNode(node);	
 		int index = in_temp.indexOf(node.getValue());
 		
 		List<Integer> in_left = in_temp.subList(0, index);
