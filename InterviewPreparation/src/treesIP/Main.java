@@ -21,17 +21,17 @@ public class Main {
 		init.printTree(tree);
 		
 		while(true) {
-			System.out.print("Enter Root : ");
-			root_val = Integer.parseInt(br.readLine());
-			BinaryTree sub_tree = new BinaryTree(new BinaryNode(root_val));
-	
-			sub_tree = init.initializeTree(sub_tree);
+			System.out.print("Enter 1st Node: ");
+			int val1 = Integer.parseInt(br.readLine());
+			System.out.print("Enter 2nd Node: ");
+			int val2 = Integer.parseInt(br.readLine());
 			
-			System.out.println("Sub Tree - ");
-			init.printTree(sub_tree);
+			CousinNodes cn = new CousinNodes();
 			
-			SubTree sub = new SubTree();
-			System.out.println(sub.subTree(sub_tree, tree) + "\n");
+			if(cn.cousinNodes(tree, val1, val2)) System.out.println("Cousins");
+			else System.out.println("Not Cousins");
+			
+			System.out.println();
 		}
 	}
 }

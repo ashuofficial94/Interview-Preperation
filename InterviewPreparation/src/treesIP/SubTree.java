@@ -37,6 +37,7 @@ public class SubTree {
 		}
 	}
 	*/
+	
 	public boolean subTree(BinaryTree sub, BinaryTree tree) {
 
 		List<BinaryNode> tree_in = new ArrayList<BinaryNode>();
@@ -70,6 +71,8 @@ public class SubTree {
 						break;
 					}
 				}
+				if(found)
+					break;
 			}
 		}
 		
@@ -87,6 +90,8 @@ public class SubTree {
 						break;
 					}
 				}
+				if(found)
+					break;
 			}
 		}
 		
@@ -113,4 +118,14 @@ public class SubTree {
 		return;
 	}
 	
+	public boolean subTree2(BinaryNode sub_root, BinaryNode tree_root) {
+		
+		if(sub_root == null)return true;
+		if(tree_root == null) return false;
+		
+		IdenticalTrees iden = new IdenticalTrees();
+		if(iden.identicalTrees(sub_root, tree_root)) return true;
+		
+		return subTree2(sub_root, tree_root.getLeft()) || subTree2(sub_root, tree_root.getRight());
+	}
 }

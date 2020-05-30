@@ -6,12 +6,9 @@ import java.util.List;
 public class Tree {
 
 	private Node root;
-	private List<Node> list;
 	
 	Tree(Node root) {
 		this.root = root;
-		list = new ArrayList<Node>();
-		list.add(root);
 	}
 	
 	public Node getRoot() {
@@ -19,7 +16,28 @@ public class Tree {
 	}
 	
 	public List<Node> getNodes() {
-		return list;
+		
+		List<Node> nodes = new ArrayList<Node>();
+		List<Node> queue = new ArrayList<Node>();
+
+		queue.add(root);
+		
+		while(queue.size() > 0) {
+			
+			nodes.add(queue.get(0));
+			Node left_node = queue.get(0).getLeft();
+			Node right_node = queue.get(0).getRight();
+			
+			if(left_node != null && !nodes.contains(left_node))
+				queue.add(left_node);
+			
+			if(right_node != null && !nodes.contains(right_node))
+				queue.add(right_node);
+			
+			queue.remove(0);
+		}
+		
+		return nodes;
 	}
 	
 	public boolean addNode(Node node) {
@@ -31,7 +49,6 @@ public class Tree {
 				
 				if(current.getLeft() == null) {
 					current.setLeft(node);
-					list.add(node);
 					return true;
 				}
 				
@@ -42,7 +59,6 @@ public class Tree {
 				
 				if(current.getRight() == null) {
 					current.setRight(node);
-					list.add(node);
 					return true;
 				}
 				
