@@ -51,7 +51,6 @@ public class Tree {
 					current.setLeft(node);
 					return true;
 				}
-				
 				current = current.getLeft();
 			}
 			
@@ -61,7 +60,6 @@ public class Tree {
 					current.setRight(node);
 					return true;
 				}
-				
 				current = current.getRight();
 			}
 			

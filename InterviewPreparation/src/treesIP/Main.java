@@ -3,6 +3,7 @@ package treesIP;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.List;
 
 public class Main {
 
@@ -19,18 +20,17 @@ public class Main {
 		
 		System.out.println("Tree - ");
 		init.printTree(tree);
+	
+		RootToLeaves rtl = new RootToLeaves();
 		
-		while(true) {
-			System.out.print("Enter 1st Node: ");
-			int val1 = Integer.parseInt(br.readLine());
-			System.out.print("Enter 2nd Node: ");
-			int val2 = Integer.parseInt(br.readLine());
-			
-			CousinNodes cn = new CousinNodes();
-			
-			if(cn.cousinNodes(tree, val1, val2)) System.out.println("Cousins");
-			else System.out.println("Not Cousins");
-			
+		List<List<BinaryNode>> paths = rtl.rootToLeaves(tree);
+		
+		System.out.println("Root to Leave Paths - ");
+		
+		for(List<BinaryNode> path: paths) {
+			for(BinaryNode node: path) {
+				System.out.print(node.getValue() + " ");
+			}
 			System.out.println();
 		}
 	}

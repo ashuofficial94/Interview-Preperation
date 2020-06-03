@@ -4,39 +4,38 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BalanceBST {
+	/*
+	public static void main(String[] args) throws IOException {
+		
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		System.out.println("Enter Elements - \n" );
+		
+		String[] input = br.readLine().trim().split(" ");
+		List<Integer> elem = new ArrayList<Integer>();
+		
+		for(String in: input) {
+			elem.add(Integer.parseInt(in));
+		}
+		
+		InitializeTree init = new InitializeTree();
+		Tree tree = init.initializeTree(elem);
+		init.printTree(tree);
 
+		BalanceBST bal = new BalanceBST();
+		init.printTree(bal.balanceBST(tree));
+	} 
+	*/
+	
 	public Tree balanceBST(Tree un_tree) {
 		
 		List<Node> nodes = new ArrayList<Node>();
 		getNodes(nodes, un_tree.getRoot());
 		
-		for(Node node: nodes) {
-			node.setLeft(null);
-			node.setRight(null);
-		}
-		
-		int mid = nodes.size()/2;
-		Node root = nodes.get(mid);
+		Node root = constructBalancedBST(nodes, 0, nodes.size()-1);
 		Tree bal_tree = new Tree(root);
-		
-//		addMids(nodes, 0, mid-1, bal_tree);
-//		addMids(nodes, mid+1, nodes.size()-1, bal_tree);
-		
-		root.setLeft(constructBalancedBST(nodes, 0, mid-1));
-		root.setRight(constructBalancedBST(nodes, mid+1, nodes.size()-1));
 		
 		return bal_tree;
 	}
-	
-//	private void addMids(List<Node> nodes, int start, int end, Tree tree) {
-//		
-//		if(start <= end) {
-//			int mid = (start+end)/2;
-//			tree.addNode(nodes.get(mid));
-//			addMids(nodes, start, mid-1, tree);
-//			addMids(nodes, mid+1, end, tree);
-//		}
-//	}
 	
 	private Node constructBalancedBST(List<Node> nodes, int start, int end) {
 		

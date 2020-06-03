@@ -17,12 +17,8 @@ public class BalancedBST {
 		List<Integer> values = new ArrayList<Integer>();
 		for(String elem: input) values.add(Integer.parseInt(elem));
 		
-		int mid = values.size()/2;
-		BinaryNode root = new BinaryNode(values.get(mid));
+		BinaryNode root = constructBST(values, 0, values.size()-1);
 		BinaryTree tree = new BinaryTree(root);
-		
-		root.setLeft(constructBST(values, 0, mid-1));
-		root.setRight(constructBST(values, mid+1, values.size()-1));
 		
 		InitializeTree init = new InitializeTree();
 		init.printTree(tree);
