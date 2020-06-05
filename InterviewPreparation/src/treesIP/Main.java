@@ -21,17 +21,9 @@ public class Main {
 		System.out.println("Tree - ");
 		init.printTree(tree);
 	
-		RootToLeaves rtl = new RootToLeaves();
-		
-		List<List<BinaryNode>> paths = rtl.rootToLeaves(tree);
-		
-		System.out.println("Root to Leave Paths - ");
-		
-		for(List<BinaryNode> path: paths) {
-			for(BinaryNode node: path) {
-				System.out.print(node.getValue() + " ");
-			}
-			System.out.println();
+		LevelSpiral ls = new LevelSpiral();
+		for(BinaryNode node: ls.levelSpiral(tree)) {
+			System.out.print(node.getValue() + " ");
 		}
 	}
 }
