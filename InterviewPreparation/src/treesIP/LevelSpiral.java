@@ -46,6 +46,8 @@ public class LevelSpiral {
 		*/
 		
 		//RBR Solution
+		//Even_Stack contains node at even level, root at 0
+		//Odd_Stack contains node at odd level
 		
 		Stack odd_stack = new Stack();
 		Stack even_stack = new Stack();
@@ -55,24 +57,24 @@ public class LevelSpiral {
 			
 			while(even_stack.getStack().size() != 0) {
 				
-				list.add(even_stack.getTop());
-				BinaryNode left = even_stack.getTop().getLeft();
-				BinaryNode right = even_stack.getTop().getRight();
+				BinaryNode node = even_stack.pop();
+				list.add(node);
+				BinaryNode left = node.getLeft();
+				BinaryNode right = node.getRight();
 				
 				if(right != null) odd_stack.push(right);
 				if(left != null) odd_stack.push(left);
-				even_stack.pop();
 			}
 			
 			while(odd_stack.getStack().size() != 0) {
-				
-				list.add(odd_stack.getTop());
-				BinaryNode left = odd_stack.getTop().getLeft();
-				BinaryNode right = odd_stack.getTop().getRight();
-				
+
+				BinaryNode node = odd_stack.pop();
+				list.add(node);
+				BinaryNode left = node.getLeft();
+				BinaryNode right = node.getRight();
+
 				if(left != null) even_stack.push(left);
 				if(right != null) even_stack.push(right);
-				odd_stack.pop();
 			}
 		}
 		

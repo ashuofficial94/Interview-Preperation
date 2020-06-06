@@ -5,26 +5,67 @@ import java.util.List;
 
 public class ConstructPreIn {
 
-	private List<Integer> preorder;
-	private List<Integer> inorder;
-	private BinaryTree tree;
-	
-	ConstructPreIn(List<Integer> preorder, List<Integer> inorder) {
-		this.preorder = preorder;
-		this.inorder = inorder;
+	/*
+	public static void main(String arge[]) throws IOException{
+		
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		System.out.print("Enter preorder : ");
+		
+		String[] input = br.readLine().trim().split(" ");
+		List<Integer> preorder = new ArrayList<Integer>();
+		
+		for(String val: input) {
+			preorder.add(Integer.parseInt(val));
+		}
+		
+		System.out.print("Enter inorder : ");
+		
+		input = br.readLine().trim().split(" ");
+		List<Integer> inorder = new ArrayList<Integer>();
+		
+		for(String val: input) {
+			inorder.add(Integer.parseInt(val));
+		}
+		
+		ConstructPreIn cons = new ConstructPreIn();
+		BinaryTree tree = cons.constructPreIn(preorder, inorder);
+		
+		System.out.println("Tree - ");
+		InitializeTree init = new InitializeTree();
+		init.printTree(tree);
 	}
+	*/
 	
-	public BinaryTree constructPreIn() {
+	public BinaryTree constructPreIn(List<Integer> preorder, List<Integer> inorder) {
 		
-		BinaryNode root = new BinaryNode(preorder.get(0));
-		tree = new BinaryTree(root);
+//		BinaryNode root = new BinaryNode(preorder.get(0));
+//		BinaryTree tree = new BinaryTree(root);
+//		constructPreInRec(preorder, inorder, tree.getRoot());
 		
-		constructPreInRec(preorder, inorder, tree.getRoot());
-		
+		BinaryTree tree = new BinaryTree(buildTree(preorder, inorder));
 		return tree;
 	}
 	
-	private void constructPreInRec(List<Integer> pre_temp, List<Integer> in_temp, BinaryNode node) {
+	//RBR Solution
+	private BinaryNode buildTree(List<Integer> preorder, List<Integer> inorder) {
+
+		if(inorder.size() > 0) {
+			
+			BinaryNode node = new BinaryNode(preorder.remove(0));
+			int index = inorder.indexOf(node.getValue());
+			
+			node.setLeft(buildTree(preorder, inorder.subList(0, index)));
+			node.setRight(buildTree(preorder, inorder.subList(index+1, inorder.size())));
+			
+			return node;
+		}
+		
+		return null;
+	}
+	
+	//My solution
+	public void constructPreInRec(List<Integer> pre_temp, List<Integer> in_temp, BinaryNode node) {
+		
 		
 		if(pre_temp.size() == 0)
 			return;
@@ -59,7 +100,7 @@ public class ConstructPreIn {
 			node.setRight(right);
 			constructPreInRec(pre_right, in_right, right);
 		}
-		
+
 		return;
 	}
 }

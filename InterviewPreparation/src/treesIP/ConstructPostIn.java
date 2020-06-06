@@ -4,27 +4,34 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ConstructPostIn {
-
-	private List<Integer> postorder;
-	private List<Integer> inorder;
-	private BinaryTree tree;
 	
-	ConstructPostIn(List<Integer> postorder, List<Integer> inorder) {
-		this.postorder = postorder;
-		this.inorder = inorder;
-	}
-	
-	public BinaryTree constructPostIn() {
+	public BinaryTree constructPostIn(List<Integer> postorder, List<Integer> inorder) {
 		
-		BinaryNode root = new BinaryNode(postorder.get(postorder.size()-1));
-		tree = new BinaryTree(root);	
-		constructPostInRec(postorder, inorder, tree.getRoot());
+//		BinaryNode root = new BinaryNode(postorder.get(postorder.size()-1));
+//		BinaryTree tree = new BinaryTree(root);	
+//		constructPostInRec(postorder, inorder, tree.getRoot());
 		
+		BinaryTree tree = new BinaryTree(buildTree(postorder, inorder));
 		return tree;
 		
 	}
 	
-	private void constructPostInRec(List<Integer> post_temp, List<Integer> in_temp, BinaryNode node) {
+	private BinaryNode buildTree(List<Integer> postorder, List<Integer> inorder) {
+		
+		if(inorder.size() > 0) {
+			
+			BinaryNode node = new BinaryNode(postorder.remove(postorder.size()-1));
+			int index = inorder.indexOf(node.getValue());
+
+			node.setRight(buildTree(postorder, inorder.subList(index+1, inorder.size())));
+			node.setLeft(buildTree(postorder, inorder.subList(0, index)));
+			return node;
+		}
+		
+		return null;
+	}
+	
+	public void constructPostInRec(List<Integer> post_temp, List<Integer> in_temp, BinaryNode node) {
 		
 		if(post_temp.size() == 0)
 			return;
@@ -64,7 +71,7 @@ public class ConstructPostIn {
 	}
 	
 	/*
-	  	public static void main(String arge[]) throws IOException{
+	public static void main(String arge[]) throws IOException{
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		System.out.print("Enter postorder : ");
@@ -85,12 +92,12 @@ public class ConstructPostIn {
 			inorder.add(Integer.parseInt(val));
 		}
 		
-		ConstructPostIn cons = new ConstructPostIn(postorder, inorder);
-		BinaryTree tree = cons.constructPostIn();
+		ConstructPostIn cons = new ConstructPostIn();
+		BinaryTree tree = cons.constructPostIn(postorder, inorder);
 		
-		InitializeTree init = new InitializeTree(tree);
-		init.printTree();
-	}
-	
+		System.out.println("Tree - ");
+		InitializeTree init = new InitializeTree();
+		init.printTree(tree);
+	}	
 	*/
 }
