@@ -11,11 +11,10 @@ public class InitializeTree {
 	public BinaryTree initializeTree(BinaryTree tree) throws IOException {
 
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		System.out.println("\nEnter -1 as a Parent to save.");
-		System.out.println("Parent can only be the nodes which already exist.");
-		System.out.println("Enter any alphabet as a null child.");
+		System.out.println("\nParent can only be the nodes which already exist.");
+		System.out.println("Skip entry or 0 for null child.");
+		System.out.println("Enter 0 to save.");
 		
-		Validation valid = new Validation();
 		int parent;
 		
 		while(true) {
@@ -31,7 +30,7 @@ public class InitializeTree {
 				continue;
 			}
 			
-			if(parent == -1) {
+			if(parent == 0) {
 				System.out.println("Tree Saved.\n");
 				break;
 			}
@@ -53,10 +52,17 @@ public class InitializeTree {
 			if(parent_node.getLeft() == null) {
 			
 				System.out.print("Left Child : ");
-				String l_child = br.readLine();
 				
-				if(valid.isNumber(l_child)) {
-					BinaryNode l_node = new BinaryNode(Integer.parseInt(l_child));
+				try {
+					
+					int l_child = Integer.parseInt(br.readLine());
+
+					if(l_child == 0) {
+						System.out.println("Tree Saved.\n");
+						break;
+					}
+					
+					BinaryNode l_node = new BinaryNode(l_child);
 					
 					if(tree.getNode(l_node) == null) {
 						parent_node.setLeft(l_node);
@@ -65,6 +71,10 @@ public class InitializeTree {
 						System.out.println(l_child + " already exists");
 						continue;
 					}
+				}
+				
+				catch(NumberFormatException e) {
+					
 				}
 			}
 			
@@ -75,10 +85,16 @@ public class InitializeTree {
 			if(parent_node.getRight() == null) {
 				
 				System.out.print("Right Child : ");
-				String r_child = br.readLine();
 				
-				if(valid.isNumber(r_child)) {
-					BinaryNode r_node = new BinaryNode(Integer.parseInt(r_child));
+				try {
+					int r_child = Integer.parseInt(br.readLine());
+
+					if(r_child == 0) {
+						System.out.println("Tree Saved.\n");
+						break;
+					}
+					
+					BinaryNode r_node = new BinaryNode(r_child);
 					
 					if(tree.getNode(r_node) == null) {
 						parent_node.setRight(r_node);
@@ -87,6 +103,10 @@ public class InitializeTree {
 						System.out.println(r_child + " already exists");
 						continue;
 					}
+				}
+				
+				catch(NumberFormatException e) {
+					
 				}
 				
 			}

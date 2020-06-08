@@ -72,8 +72,12 @@ public class BinaryTree {
 		
 		if(node == null) return null;
 		if(node.getValue() == target.getValue()) return node;
-		if(findNode(node.getLeft(), target) != null) return findNode(node.getLeft(), target);
-		if(findNode(node.getRight(), target) != null) return findNode(node.getRight(), target);
+		
+		BinaryNode left_node = findNode(node.getLeft(), target);
+		BinaryNode right_node = findNode(node.getRight(), target);
+		
+		if(left_node != null) return left_node;
+		if(right_node != null) return right_node;
 		
 		return null;
 	}

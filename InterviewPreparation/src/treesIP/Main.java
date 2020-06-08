@@ -3,26 +3,28 @@ package treesIP;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
 
 	public static void main(String arge[]) throws IOException{
 		
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
-		System.out.print("Enter Root : ");
-		int root_val = Integer.parseInt(br.readLine());
-		BinaryTree tree = new BinaryTree(new BinaryNode(root_val));
+		NaryInit init = new NaryInit();
+		NaryTree nary = init.initialize();
+		init.printTree(nary);
 		
-		InitializeTree init = new InitializeTree();
-		tree = init.initializeTree(tree);
+		NarySerialization obj = new NarySerialization();
+		List<Integer> serial = obj.narySerialization(nary);
 		
-		System.out.println("Tree - \n");
-		init.printTree(tree);
+		System.out.println();
+		for(int node : serial) {
+			System.out.print(node + " ");
+		}
 		
-		System.out.println("Diagonal Traversal : ");
+		NaryTree deserialized = obj.naryDeserialization(serial);
+		System.out.println();
+		init.printTree(deserialized);
 		
-		DiagonalTraversal dt = new DiagonalTraversal();
-		dt.diagonalTraversal(tree);
 	}
 }

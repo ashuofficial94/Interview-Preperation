@@ -15,6 +15,10 @@ public class BinaryNode {
 	public int getValue() {
 		return value;
 	}
+	
+	public void setValue(int value) {
+		this.value = value;
+	}
 
 	public void setLeft(BinaryNode l_node) {
 		left = l_node;
