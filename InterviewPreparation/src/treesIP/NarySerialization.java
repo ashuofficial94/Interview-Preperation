@@ -29,7 +29,48 @@ public class NarySerialization {
 		
 	}
 	*/
+	//SERIALIZATION WITH RECURSION
+	public List<Integer> narySerialization(NaryTree nary) {
+		
+		List<Integer> serial = new ArrayList<Integer>();
+		preorder(nary.getRoot(), serial);
+		return serial;
+	}
 	
+	private void preorder(NaryNode node, List<Integer> serial) {
+		
+		serial.add(node.getValue());
+		for(NaryNode child : node.getChildren()) preorder(child, serial);
+		serial.add(0);
+	}
+	
+	//DESERIALIZATION WITH RECURSION
+	public NaryTree naryDeserialization(List<Integer> serial) {
+		
+		NaryNode root = new NaryNode(serial.remove(0));
+		NaryTree nary = new NaryTree(root);
+		buildTree(root, serial);
+		return nary;
+	}
+	
+	private boolean buildTree(NaryNode node, List<Integer> serial) {
+
+		NaryNode child = new NaryNode(serial.remove(0));
+		if(child.getValue() == 0) return false;
+		node.addChild(child);
+		
+		while(!buildTree(child, serial)) {
+			child = new NaryNode(serial.remove(0));
+			if(child.getValue() == 0) return false;
+			node.addChild(child);
+		}
+		
+		return true;
+	}
+	
+	//SERIALIZATION WITHOUT RECURSION(USING STACK)
+	
+	/*
 	public List<Integer> narySerialization(NaryTree nary) {
 		
 		List<Integer> serial = new ArrayList<Integer>();
@@ -66,7 +107,10 @@ public class NarySerialization {
 		
 		return serial;
 	}
+	*/
 	
+	//DESERIALIZATION WITHOUT RECURSION (USING STACK)
+	/*
 	public NaryTree naryDeserialization(List<Integer> serial) {
 		
 		NaryNode root = new NaryNode(serial.get(0));
@@ -92,5 +136,5 @@ public class NarySerialization {
 		
 		return nary;
 	}
-	
+	*/	
 }

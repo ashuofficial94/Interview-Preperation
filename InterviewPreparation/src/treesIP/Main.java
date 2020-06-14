@@ -10,21 +10,27 @@ public class Main {
 
 	public static void main(String arge[]) throws IOException{
 		
-		NaryInit init = new NaryInit();
-		NaryTree nary = init.initialize();
-		init.printTree(nary);
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		System.out.println("Enter the matrix - \n");
 		
-		NarySerialization obj = new NarySerialization();
-		List<Integer> serial = obj.narySerialization(nary);
+		String[] input = br.readLine().split(" ");
+		int n = input.length;
+		List<List<Integer>> ancestorMatrix = new ArrayList<List<Integer>>();
+		List<Integer> first_input = new ArrayList<Integer>();
 		
-		System.out.println();
-		for(int node : serial) {
-			System.out.print(node + " ");
+		for(String elem : input) first_input.add(Integer.parseInt(elem));
+		ancestorMatrix.add(first_input);
+		
+		for(int i=1; i<n; i++) {
+			input = br.readLine().split(" ");
+			List<Integer> temp = new ArrayList<Integer>();
+			for(String elem : input) temp.add(Integer.parseInt(elem));
+			ancestorMatrix.add(temp);
 		}
 		
-		NaryTree deserialized = obj.naryDeserialization(serial);
-		System.out.println();
-		init.printTree(deserialized);
-		
+		AncestorMatrix am = new AncestorMatrix();
+		BinaryTree tree = am.ancestorMatrix(ancestorMatrix);
+		InitializeTree init = new InitializeTree();
+		init.printTree(tree);
 	}
 }
