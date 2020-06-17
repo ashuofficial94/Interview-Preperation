@@ -31,6 +31,7 @@ public class Main {
 		AncestorMatrix am = new AncestorMatrix();
 		BinaryTree tree = am.ancestorMatrix(ancestorMatrix);
 		InitializeTree init = new InitializeTree();
+		System.out.println("\nTree\n");
 		init.printTree(tree);
 	}
 }

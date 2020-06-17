@@ -1,5 +1,8 @@
 package treesIP;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -9,10 +12,12 @@ import java.util.Map;
 //incomplete
 
 public class AncestorMatrix {
-
-	private Map<Integer, List<BinaryNode>> count_map = new HashMap<Integer, List<BinaryNode>>();
 	
 	public BinaryTree ancestorMatrix(List<List<Integer>> ancestor_matrix) {
+	
+		List<BinaryNode> node_list = new ArrayList<BinaryNode>();
+		Map<Integer, List<BinaryNode>> count_map = new HashMap<Integer, List<BinaryNode>>();
+		Map<BinaryNode, Boolean> parented = new HashMap<BinaryNode, Boolean>();
 		
 		for(int i=0; i<ancestor_matrix.size(); i++) {
 			
@@ -25,26 +30,51 @@ public class AncestorMatrix {
 				count_map.put(count, new ArrayList<BinaryNode>());
 			
 			count_map.get(count).add(node);
+			parented.put(node, false);
 		}
 		
 		List<Integer> keys = new ArrayList<Integer>(count_map.keySet());
 		Collections.sort(keys);
-		BinaryNode root = count_map.get(keys.get(keys.size()-1)).get(0);
+		int max_key = keys.get(keys.size()-1);
+		
+		BinaryNode root = count_map.get(max_key).get(0);
 		BinaryTree tree = new BinaryTree(root);
 		
-		while(keys.size() > 0) {
-			
-			BinaryNode node = count_map.get(keys.get(0)).get(0);
-			List<Integer> ancestor_data = ancestor_matrix.get(node.getValue()-1);
-			
-			for(int i=0; i<ancestor_data.size(); i++)
-				if(ancestor_data.get(i) == 1) {
-					
-				}
+		node_list.addAll(count_map.get(0));
+		keys.remove(0);
+		
+		for(int key : keys) {
+			for(BinaryNode parent : count_map.get(key)) {
 				
+				List<Integer> ancestor_data = ancestor_matrix.get(parent.getValue()-1);
+				node_list.add(parent);
+				for(int i=0; i<ancestor_data.size(); i++) {
+					
+					if(ancestor_data.get(i) == 1) {
+						BinaryNode child = getNode(i+1, node_list);
+						
+						if(!parented.get(child)) {
+							
+							if(parent.getLeft() == null) parent.setLeft(child);
+							else parent.setRight(child);
+							
+							parented.replace(child, true);
+						}
+					}
+				}
+			}
 		}
-	
+		
 		return tree;
+	}
+	
+	private BinaryNode getNode(int value, List<BinaryNode> node_list) {
+		
+		for(BinaryNode node : node_list) {
+			if(node.getValue() == value) return node;
+		}
+		
+		return null;
 	}
 	
 	/*
@@ -71,6 +101,7 @@ public class AncestorMatrix {
 		AncestorMatrix am = new AncestorMatrix();
 		BinaryTree tree = am.ancestorMatrix(ancestorMatrix);
 		InitializeTree init = new InitializeTree();
+		System.out.println("\nTree\n");
 		init.printTree(tree);
 	}
 	*/
