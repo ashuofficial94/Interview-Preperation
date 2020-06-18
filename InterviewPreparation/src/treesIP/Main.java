@@ -11,25 +11,23 @@ public class Main {
 	public static void main(String arge[]) throws IOException{
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		System.out.println("Enter the matrix - \n");
+		System.out.println("Enter the nodes as List - \n");
 		
 		String[] input = br.readLine().split(" ");
-		int n = input.length;
-		List<List<Integer>> ancestorMatrix = new ArrayList<List<Integer>>();
-		List<Integer> first_input = new ArrayList<Integer>();
+		ListNode head = new ListNode(Integer.parseInt(input[0]));
+		ListNode curr = head;
 		
-		for(String elem : input) first_input.add(Integer.parseInt(elem));
-		ancestorMatrix.add(first_input);
-		
-		for(int i=1; i<n; i++) {
-			input = br.readLine().split(" ");
-			List<Integer> temp = new ArrayList<Integer>();
-			for(String elem : input) temp.add(Integer.parseInt(elem));
-			ancestorMatrix.add(temp);
+		for(int i=1; i<input.length; i++) {
+			ListNode node = new ListNode(Integer.parseInt(input[i]));
+			curr.setNext(node);
+			curr = curr.getNext();
 		}
 		
-		AncestorMatrix am = new AncestorMatrix();
-		BinaryTree tree = am.ancestorMatrix(ancestorMatrix);
+		LinkedListRepresentation llr = new LinkedListRepresentation();
+		
+		BinaryTree tree = llr.buildTreeQ(head);
+//		BinaryTree tree = llr.buildTree(head);
+		
 		InitializeTree init = new InitializeTree();
 		System.out.println("\nTree\n");
 		init.printTree(tree);

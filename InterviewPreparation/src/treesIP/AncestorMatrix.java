@@ -9,7 +9,19 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-//incomplete
+//Construct a Binary Tree using Ancestor Matrix
+
+/*
+Input - 
+
+0 1 1 1 1 1
+0 0 0 0 0 1
+0 0 0 1 1 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+
+*/
 
 public class AncestorMatrix {
 	
