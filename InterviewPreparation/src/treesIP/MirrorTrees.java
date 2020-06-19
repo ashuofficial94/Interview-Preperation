@@ -47,7 +47,8 @@ public class MirrorTrees {
 		}
 	}
 	
-	/*	public static void main(String arge[]) throws IOException{
+	/*	
+	public static void main(String arge[]) throws IOException{
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
@@ -65,7 +66,8 @@ public class MirrorTrees {
 		System.out.println("Mirror Tree - \n");
 		init.printTree(mir.getMirror());
 		
-	} */
+	} 
+	*/
 	
 	public boolean mirrorTreesCheck() {
 		return mirrorCheck(tree1.getRoot(), tree2.getRoot());

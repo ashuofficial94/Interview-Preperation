@@ -11,25 +11,27 @@ public class Main {
 	public static void main(String arge[]) throws IOException{
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		System.out.println("Enter the nodes as List - \n");
-		
-		String[] input = br.readLine().split(" ");
-		ListNode head = new ListNode(Integer.parseInt(input[0]));
-		ListNode curr = head;
-		
-		for(int i=1; i<input.length; i++) {
-			ListNode node = new ListNode(Integer.parseInt(input[i]));
-			curr.setNext(node);
-			curr = curr.getNext();
-		}
-		
-		LinkedListRepresentation llr = new LinkedListRepresentation();
-		
-		BinaryTree tree = llr.buildTreeQ(head);
-//		BinaryTree tree = llr.buildTree(head);
+
+		System.out.print("Enter Root : ");
+		int root_val = Integer.parseInt(br.readLine());
+		BinaryTree tree = new BinaryTree(new BinaryNode(root_val));
 		
 		InitializeTree init = new InitializeTree();
-		System.out.println("\nTree\n");
+		tree = init.initializeTree(tree);
+		
+		System.out.println("Tree - \n");
 		init.printTree(tree);
-	}
+
+		while(true) {
+			
+			System.out.print("Enter the Node - ");
+			int target = Integer.parseInt(br.readLine());
+			
+			NextRight nr = new NextRight();
+			BinaryNode right =  nr.nextRight(tree, target);
+			if(right != null) System.out.println("Next Right - " + right.getValue() + "\n");
+			else System.out.println("Not found.\n");
+		}
+	
+	} 
 }
