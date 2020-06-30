@@ -35,4 +35,8 @@ public class BinaryNode {
 	public BinaryNode getRight() {
 		return right;
 	}
+	
+	public boolean isLeaf() {
+		return left == null && right == null;
+	}
 }

@@ -3,6 +3,7 @@ package treesIP;
 public class SumTree {
 
 	private boolean sum = true;
+	
 	public boolean sumTree(BinaryTree tree) {
 
 		checkSum(tree.getRoot());

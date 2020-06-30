@@ -4,16 +4,18 @@ public class ChildSumTree {
 
 	public BinaryTree childSumTree(BinaryTree tree) {
 		
-		buildTree(tree.getRoot());
+		buildTreeByIncrement(tree.getRoot());
 		return tree;
 	}
 	
-	private int buildTree(BinaryNode node) {
+	
+	//Only Increments
+	private int buildTreeByIncrement(BinaryNode node) {
 		
 		if(node != null) {
 			
-			int left_sum = buildTree(node.getLeft());
-			int right_sum = buildTree(node.getRight());
+			int left_sum = buildTreeByIncrement(node.getLeft());
+			int right_sum = buildTreeByIncrement(node.getRight());
 			
 			if(node.getValue() <= left_sum + right_sum) 
 				node.setValue(left_sum + right_sum);
@@ -34,7 +36,7 @@ public class ChildSumTree {
 				
 				else if(has_left && has_right){
 					node.getLeft().setValue(node.getValue() - right_sum);
-					buildTree(node.getLeft());	
+					buildTreeByIncrement(node.getLeft());	
 				}
 			}
 			

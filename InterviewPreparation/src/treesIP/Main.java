@@ -21,17 +21,11 @@ public class Main {
 		
 		System.out.println("Tree - \n");
 		init.printTree(tree);
-
-		while(true) {
-			
-			System.out.print("Enter the Node - ");
-			int target = Integer.parseInt(br.readLine());
-			
-			NextRight nr = new NextRight();
-			BinaryNode right =  nr.nextRight(tree, target);
-			if(right != null) System.out.println("Next Right - " + right.getValue() + "\n");
-			else System.out.println("Not found.\n");
-		}
-	
+		
+		DividedHalf div = new DividedHalf();
+		boolean divided = div.dividedHalf(tree);
+		
+		if(divided) System.out.print(" to divide in Half");
+		else System.out.println("Not Half Divided");
 	} 
 }
