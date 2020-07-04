@@ -11,11 +11,11 @@ public class Main {
 	public static void main(String arge[]) throws IOException{
 		
 		NaryInit init = new NaryInit();
-		NaryTree tree = init.initialize();
-		init.printTree(tree);
+		NaryTree nary = init.initialize();
+		init.printTree(nary);
+		System.out.println();
 		
-		LockUnlock lu = new LockUnlock();
-		lu.lockUnclock(tree);
-		
+		CustomTree cust = new CustomTree();
+		cust.customTree(nary);
 	}
 }
