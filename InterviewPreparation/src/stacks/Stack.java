@@ -11,6 +11,10 @@ public class Stack<Type> {
 		stack = new ArrayList<Type>();
 	}
 	
+	Stack(List<Type> elem) {
+		stack = new ArrayList<Type>(elem);
+	}
+	
 	public boolean push(Type elem) {
 		return stack.add(elem);
 	}
