@@ -51,11 +51,12 @@ public class StackReversal<Type> {
 	}
 	
 	private void insertAtBottom(Stack<Type> stack, Type item) {
-		if(stack.isEmpty()) stack.push(item);
-		else {
-			Type top = stack.pop();
-			insertAtBottom(stack, item);
-			stack.push(top);
+		if(stack.isEmpty()) {
+			stack.push(item);
+			return;
 		}
+		Type top = stack.pop();
+		insertAtBottom(stack, item);
+		stack.push(top);
 	}
 }

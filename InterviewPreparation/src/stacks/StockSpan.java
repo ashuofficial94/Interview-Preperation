@@ -11,15 +11,32 @@ For example, if an array of 7 days prices is given as {100, 80, 60, 70, 60, 75, 
 
 public class StockSpan {
 
+	/*
+	public static void main(String[] args) throws IOException{
+		
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String[] buffer = br.readLine().split(" ");
+		List<Integer> prices = new ArrayList<Integer>();
+		
+		for(String price : buffer) prices.add(Integer.parseInt(price));
+		StockSpan stock = new StockSpan();
+		stock.stockSpan(prices);
+	}
+	*/
+	
 	public List<Integer> stockSpan(List<Integer> prices) {
 		
 		Stack<Integer> stack = new Stack<Integer>();
 		List<Integer> span = new ArrayList<Integer>();
+		
+		//MAX_VALUE will not let the stack get empty saving all the indices
+		//If the stack gets empty -- span = index of the element
+		
 		prices.add(0, Integer.MAX_VALUE);
 		stack.push(0);
 		
 		for(int index = 1; index < prices.size(); index++) {
-			while(prices.get(stack.getTop()) < prices.get(index))
+			while(prices.get(stack.getTop()) <= prices.get(index))
 				stack.pop();
 			
 			span.add(index - stack.getTop() - 1);

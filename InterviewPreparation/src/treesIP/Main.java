@@ -10,12 +10,19 @@ public class Main {
 
 	public static void main(String arge[]) throws IOException{
 		
-		NaryInit init = new NaryInit();
-		NaryTree nary = init.initialize();
-		init.printTree(nary);
-		System.out.println();
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+		System.out.print("Enter Root : ");
+		int root_val = Integer.parseInt(br.readLine());
+		BinaryTree tree = new BinaryTree(new BinaryNode(root_val));
 		
-		CustomTree cust = new CustomTree();
-		cust.customTree(nary);
+		InitializeTree init = new InitializeTree();
+		tree = init.initializeTree(tree);
+		
+		System.out.println("Tree - \n");
+		init.printTree(tree);
+
+		Traversals obj = new Traversals();
+		System.out.println("Preorder : " + obj.traversals(tree));
 	}
 }
