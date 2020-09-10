@@ -4,6 +4,18 @@ package stacks;
 
 public class BracketReversal {
 	
+	/*
+	public static void main(String[] args) throws IOException{
+		
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String brackets = br.readLine();
+		
+		BracketReversal obj = new BracketReversal();
+		System.out.println(obj.bracketReversal(brackets));
+		
+		
+	}
+	*/
 	public int bracketReversal(String brackets) {
 		
 		Stack<Character> stack = new Stack<Character>();
